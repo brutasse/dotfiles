@@ -1,0 +1,87 @@
+#! lircrcd
+
+###########################################
+### Presentations : oOo, Evince, eog... ###
+###########################################
+
+# Play/pause acts as *slideshow* or *fullscreen* button
+begin
+prog = irxevent
+button = play
+config = Key F11 CurrentWindow
+config = Key F5 CurrentWindow
+repeat = 1
+end
+
+# Menu is like *escape* key
+begin
+prog = irxevent
+button = menu
+config = Key Escape CurrentWindow
+repeat = 1
+end
+
+# prev : right key
+begin
+prog = irxevent
+button = prev
+config = Key Prior CurrentWindow
+repeat = 1
+end
+
+#next : left key
+begin
+prog = irxevent
+button = next
+config = Key Next CurrentWindow
+repeat = 1
+end
+
+begin
+prog = irxevent
+button = up
+config = Key 0xb0 CurrentWindow
+repeat = 1
+end
+
+###########################################
+### Volume buttons                      ###
+###########################################
+begin
+prog = irexec
+button = up
+config = amixer set Front 5%+
+repeat = 2
+end
+
+begin
+prog = irexec
+button = down
+config = amixer set Front 5-
+repeat = 2
+end
+
+###########################################
+### MPD control                         ###
+###########################################
+begin
+prog = irexec
+button = next
+config = sonata next
+repeat = 0
+end
+
+begin
+prog = irexec
+button = prev
+config = sonata prev
+repeat = 0
+end
+
+begin
+prog = irexec
+button = play
+config = sonata pp
+repeat = 0
+end
+

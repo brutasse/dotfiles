@@ -1,0 +1,55 @@
+! xdefaults
+
+!!! Colors !!!
+
+!black
+*color0: #000000
+*color8: #000000
+!red
+*color1: #e04343
+*color9: #dd6e6e
+!green
+*color2: #8eae71
+*color10: #95c749
+!yellow
+*color3: #e5ca44
+*color11: #e2ce71
+!blue
+*color4: #336699
+*color12: #6699CC
+!magenta
+*color5: #d170bc
+*color13: #d39cc7
+!cyan
+*color6: #00b8b8
+*color14: #00d8d8
+!white
+*color7: #ffffff
+*color15: #dddddd
+
+!!! xterm/aterm/urxvt/mrxvt !!!
+
+*title:Terminal
+*cursorBlink:false
+*background:#080808
+*foreground:white
+*scrollTtyOutput:false
+*VisualBell:true
+*scrollBar: true
+*scrollColor: #373538
+*scrollstyle: plain
+*scrollBar_right: true
+*borderColor: #000000
+*transparent: false
+*loginShell: true
+
+*font:xft:Inconsolata:pixelsize=14:autohint=1
+URxvt.letterSpace: -2
+
+Xft.dpi:        110
+Xft.antialias:  true
+Xft.rgba:       rgb
+Xft.hinting:    true
+Xft.hintstyle:  hintslight
+
+gnuplot*background: white

@@ -1,0 +1,11 @@
+include "/usr/share/themes/MurrinaGilouche/gtk-2.0/gtkrc"
+gtk-icon-theme-name = "Tango"
+gtk-font-name = "DejaVu Sans 7"
+gtk-toolbar-icon-size = GTK_ICON_SIZE_SMALL_TOOLBAR
+
+style "user-font"
+{
+	font_name = "DejaVu Sans 7"
+}
+
+widget_class "*" style "user-font"

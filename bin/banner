@@ -1,0 +1,18 @@
+#! /usr/bin/python
+import sys
+
+def banner():
+    text = " ".join(sys.argv[1:]).upper()
+    line = '|   %s   |' % text
+    wrap = '+' + '-' * (len(line) - 2) + '+'
+    foot = '   |' + ' ' * (len(line) - 8) + '|'
+    print(wrap)
+    print(line)
+    print(wrap)
+    print(foot)
+
+if __name__ == '__main__':
+    if len(sys.argv) == 1:
+        print('Usage: banner <your text here>')
+    else:
+        banner()
