@@ -64,6 +64,7 @@ alias grep="ack"
 alias vin="vim"
 alias bim="vim"
 alias got="git"
+alias wtf="which"
 
 alias webshare='python2 -c "import SimpleHTTPServer;SimpleHTTPServer.test()"'
 alias delpyc='find . -iname "*.pyc" -exec rm {} \;'
