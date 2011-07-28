@@ -1,0 +1,1 @@
+$('#rightcontainer').hide();

@@ -1,0 +1,6 @@
+$('#header .logo img')
+	//.css('width', '100px')
+	.css('margin-top', '-15px')
+	.attr('src', 'https://img.skitch.com/20110207-x4s8eys3uy641yk72jigt38bby.png')
+	.attr('width', '100px')
+	.attr('height', '82px')
