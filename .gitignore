@@ -1,5 +1,6 @@
 bin/goo
 bin/MockupsForDesktop.air
+config/.libreoffice
 config/Empathy
 config/NetManagers
 config/Thunar
@@ -33,3 +34,5 @@ mpd/mpd.db
 mpd/mpd.log
 mpd/mpd.pid
 mpd/sticker.sql
+vim/.netrwhist
+vim/swap
