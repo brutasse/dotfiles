@@ -97,7 +97,7 @@
 <menu id="system-menu" label="Openbox">
   <item label="Lock Screen">
     <action name="Execute">
-      <command>xlock +usefirst +mousemotion +description -mode blank -bg black -fg grey30 -timeout 3 -info " " -username " " -password ""</command>
+      <command>xlock +usefirst +mousemotion +description -mode blank -bg black -fg grey30 -timeout 1 -info " " -username " " -password ""</command>
     </action>
   </item>
   <item label="Reconfigure">
