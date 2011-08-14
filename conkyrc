@@ -11,7 +11,6 @@ draw_outline no
 draw_borders no
 draw_graph_borders yes
 stippled_borders 5
-border_margin 4
 border_width 1
 default_color white
 default_shade_color black
@@ -26,4 +25,4 @@ use_spacer none
 draw_graph_borders no
 
 TEXT
-${time %k:%M} - ${time %A, %B %d} - Battery : ${color #88aadd}${battery BAT0} (${battery_time BAT0}) ${color #ffffff} - ${hwmon 0 temp 1}/${hwmon 1 temp 1}°C 
+${time %k:%M} - ${time %A, %B %d} - Battery : ${color #88aadd}${battery BAT0} (${battery_time BAT0}) ${color #ffffff} - ${hwmon 0 temp 2}/${hwmon 1 temp 1}°C 
