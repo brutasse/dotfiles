@@ -75,6 +75,8 @@ alias revtun='ssh -nNT -R 8000:localhost:8000 bruno.im'
 alias balsamiq="adobe-air ~/.bin/MockupsForDesktop.air"
 alias open="xdg-open"
 
+alias t='python ~/.bin/t.py --task-dir ~ --list todo.txt --delete-if-empty'
+
 export PATH=$PATH:~/.bin
 export LD_LIBRARY_PATH=/usr/lib
 
