@@ -70,6 +70,7 @@ if has("autocmd")
 	"autocmd FileType html,xhtml,css,xml,xsl,htmldjango setlocal expandtab sw=2 ts=2 sts=2 textwidth=0
 
 	au FileType helpfile setlocal nonumber  " no line numbers when viewing help
+	au BufRead,BufNewFile *.html set filetype=htmldjango " Who does HTML anyway
 
 	au FileType text setlocal nonumber   " no line numbers when viewing text
 	au FileType text,rst,tex setlocal textwidth=78 
