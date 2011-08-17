@@ -14,10 +14,12 @@ eval `ssh-agent` &
 eval `gnome-keyring-daemon`
 
 # Volume control
-amixer set Master 80% unmute
-amixer set Headphone 60% unmute
-amixer set PCM 80%
-amixer set 'Front Speaker' 80% unmute
+amixer set Master 85% unmute
+amixer set Headphone 85% unmute
+amixer set PCM 85% unmute
+amixer set 'Front Speaker' 85% unmute
+amixer set 'Surround Speaker' unmute
+amixer set 'Surround Speaker Playback Volum' 85% unmute
 
 # Disable touchpad while typing
 syndaemon -t -i 1 -d &
