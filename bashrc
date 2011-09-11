@@ -65,6 +65,7 @@ alias vin="vim"
 alias bim="vim"
 alias got="git"
 alias wtf="which"
+alias "bitch,"=sudo
 
 alias webshare='python -m http.server'
 alias delpyc='find . -iname "*.pyc" -exec rm {} \;'
