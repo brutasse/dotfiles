@@ -9,6 +9,7 @@
 [alias]
 	ci = commit
 	st = status
+	di = diff
 	oops = commit --amend -a -C HEAD
 
 [color]
