@@ -8,7 +8,11 @@ fi
 
 if [ -f /etc/bash_completion ]; then
 	. /etc/bash_completion
-	. ~/code/libs/django/trunk/extras/django_bash_completion
+	. ~/code/libs/django/django/extras/django_bash_completion
+fi
+
+if [ -f ~/.bash_aliases ]; then
+	. ~/.bash_aliases
 fi
 
 # Colorized ls
@@ -39,13 +43,11 @@ export TERM=rxvt-unicode
 
 export OOO_FORCE_DESKTOP=gnome
 export EDITOR=/usr/bin/vim
-
 export TMPDIR=/tmp
 export WORKON_HOME=$HOME/.virtualenvs
 source /usr/bin/virtualenvwrapper.sh
 
 export TEXINPUTS=".:~/Boulot/cv/sources/:"
-
 export PAGER=~/code/libs/mysqlpager/mypager.pl
 
 has_virtualenv() {
@@ -59,33 +61,11 @@ venv_cd() {
 }
 alias cd="venv_cd"
 
-alias suit="svn"
-alias grep="ack"
-alias vin="vim"
-alias bim="vim"
-alias got="git"
-alias wtf="which"
-alias "bitch,"=sudo
-
-alias webshare='python -m http.server'
-alias delpyc='find . -iname "*.pyc" -exec rm {} \;'
-
-alias slog="hg sl -l10"
-
-alias revtun='ssh -nNT -R 8000:localhost:8000 bruno.im'
-alias balsamiq="adobe-air ~/.bin/MockupsForDesktop.air"
-alias open="xdg-open"
-
-alias t='python ~/.bin/t.py --task-dir ~ --list todo.txt --delete-if-empty'
-
 export PATH=$PATH:~/.bin
 export LD_LIBRARY_PATH=/usr/lib
-
 export PYTHONSTARTUP=~/.pythonrc
 
-alias check_csrf="grep -r \"CsrfResponseMiddleware\" * >/dev/null&& echo \"Don't use CsrfResponseMiddleware, read django.me/csrf_howto\" || echo \"Good.\""
-
-# pip bash completion start
+# pip bash completion
 _pip_completion()
 {
     COMPREPLY=( $( COMP_WORDS="${COMP_WORDS[*]}" \
@@ -93,4 +73,3 @@ _pip_completion()
                    PIP_AUTO_COMPLETE=1 $1 ) )
 }
 complete -o default -F _pip_completion pip
-# pip bash completion end
