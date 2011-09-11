@@ -133,15 +133,15 @@
       </startupnotify>
     </action>
   </item>
-  <!--item label="Firefox6">
+  <item label="Firefox7">
     <action name="Execute">
       <command>firefox-beta-bin</command>
       <startupnotify>
         <enabled>yes</enabled>
-        <wmclass>Firefox5</wmclass>
+        <wmclass>Firefox7</wmclass>
       </startupnotify>
     </action>
-  </item-->
+  </item>
   <item label="Hotot">
     <action name="Execute">
       <command>hotot</command>
