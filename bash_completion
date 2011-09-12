@@ -1,0 +1,25 @@
+# pip bash completion
+_pip_completion()
+{
+    COMPREPLY=( $( COMP_WORDS="${COMP_WORDS[*]}" \
+                   COMP_CWORD=$COMP_CWORD \
+                   PIP_AUTO_COMPLETE=1 $1 ) )
+}
+complete -o default -F _pip_completion pip
+
+# Fabric bash completion
+_fab_completion() {
+    COMPREPLY=()
+
+    # Fab in the path?
+    [[ -n `/usr/bin/which fab` ]] || return 0
+
+    # Fabfile in this folder?
+    [[ -e fabfile.py ]] || return 0
+
+    local cur="${COMP_WORDS[COMP_CWORD]}"
+
+    tasks=$(fab -F short --list)
+    COMPREPLY=( $(compgen -W "${tasks}" -- ${cur}) )
+}
+complete -F _fab_completion fab
