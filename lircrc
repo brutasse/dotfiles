@@ -50,14 +50,14 @@ end
 begin
 prog = irexec
 button = up
-config = amixer set Front 5%+
+config = amixer set Master 5+
 repeat = 2
 end
 
 begin
 prog = irexec
 button = down
-config = amixer set Front 5-
+config = amixer set Master 5-
 repeat = 2
 end
 
