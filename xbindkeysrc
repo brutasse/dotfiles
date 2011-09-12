@@ -1,0 +1,23 @@
+"sonata next"
+ c:171
+
+"sonata prev"
+ c:173
+
+"sonata pp"
+ c:172
+
+"amixer set Master 5+"
+ c:123
+
+"amixer set Master 5-"
+ c:122
+
+"amixer set Master toggle"
+ c:121
+
+"urxvt"
+ c:128
+
+"dbus-launch thunar"
+ c:212
