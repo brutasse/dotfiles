@@ -36,3 +36,5 @@ mpd/mpd.pid
 mpd/sticker.sql
 vim/.netrwhist
 vim/swap
+pip/cache
+pip/pip.log
