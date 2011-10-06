@@ -53,7 +53,9 @@ cd ~/
 
 #stalonetray -t -g 124x48+0-0 --icon-gravity SW --window-layer bottom --sticky &
 trayer --edge bottom --align right --transparent true --alpha 255 --widthtype pixel --width 130 &
-nm-applet --sm-disable &
+
+(sleep 3 && nm-applet --sm-disable) &
+
 conky &
 
 xflux -l 7 &
