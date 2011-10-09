@@ -23,3 +23,6 @@ _fab_completion() {
     COMPREPLY=( $(compgen -W "${tasks}" -- ${cur}) )
 }
 complete -F _fab_completion fab
+
+# Django bash completion
+. ~/code/libs/django/extras/django_bash_completion

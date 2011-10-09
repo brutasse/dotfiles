@@ -8,7 +8,6 @@ fi
 
 if [ -f /etc/bash_completion ]; then
 	. /etc/bash_completion
-	. ~/code/libs/django/django/extras/django_bash_completion
 fi
 
 if [ -f ~/.bash_aliases ]; then
