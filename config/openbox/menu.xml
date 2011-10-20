@@ -5,23 +5,7 @@
 <menu id="tools-menu" label="Tools">
 	<item label="Display">
 		<action name="Execute">
-			<command>lxrandr</command>
-			<startupnotify>
-				<enabled>yes</enabled>
-			</startupnotify>
-		</action>
-	</item>
-	<item label="Dual">
-		<action name="Execute">
-			<command>/home/brute/dual-layout</command>
-			<startupnotify>
-				<enabled>yes</enabled>
-			</startupnotify>
-		</action>
-	</item>
-	<item label="Single">
-		<action name="Execute">
-			<command>/home/brute/single-layout</command>
+			<command>arandr</command>
 			<startupnotify>
 				<enabled>yes</enabled>
 			</startupnotify>
@@ -95,6 +79,11 @@
 </menu>
 
 <menu id="system-menu" label="Openbox">
+	<item label="Display">
+		<action name="Execute">
+			<command>arandr</command>
+		</action>
+	</item>
   <item label="Lock Screen">
     <action name="Execute">
       <command>xlock +usefirst +mousemotion +description -mode blank -bg black -fg grey30 -timeout 1 -info " " -username " " -password ""</command>
