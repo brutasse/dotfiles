@@ -60,4 +60,3 @@ hi htmlEvent cterm=NONE ctermfg=7
 
 " VimChant
 hi SpellBad cterm=underline ctermfg=180 ctermbg=0
-
