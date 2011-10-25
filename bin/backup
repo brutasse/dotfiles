@@ -2,10 +2,11 @@
 
 USECOLOR="yes"
 BACKUP_DST="/media/hyperbate/backup"
-BACKUP_SRC="Boulot code databases Documents Photos tmp trac"
+BACKUP_SRC="Boulot code databases Documents Photos tmp data"
 BACKUP_ABS_SRC="/etc /var/abs/local"
 BACKUP_DOTFILES="no"
-RSYNC="rsync -avq --delete --exclude=\"*.git/\" --exclude=\"*.svn/\" --exclude=\"*.hg/\""
+RSYNC="rsync -avq --delete --exclude=\"*.git/\" --exclude=\"*.svn/\" --exclude
+\"*.tox/\" --exclude=\"*.hg/\""
 
 . /etc/rc.d/functions
 
