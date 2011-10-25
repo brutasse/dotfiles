@@ -1,0 +1,47 @@
+#!/usr/bin/env python
+
+import os
+
+MENU_TEMPLATE = """<?xml version="1.0" encoding="UTF-8"?>
+<openbox_pipe_menu>
+  <item label="Configure">
+    <action name="Execute">
+      <command>arandr</command>
+    </action>
+  </item>
+{items}
+</openbox_pipe_menu>"""
+
+ITEM_TEMPLATE = """  <item label="{label}">
+    <action name="Execute">
+      <command>{command}</command>
+    </action>
+  </item>"""
+
+DISPLAY_DIR = os.path.join(
+    os.path.expanduser('~'),
+    '.screenlayout',
+)
+
+
+def label(layout):
+    name, _ = os.path.splitext(layout)
+    return " ".join(name.split('-')).capitalize()
+
+
+def menu():
+    layouts = os.listdir(DISPLAY_DIR)
+    items = []
+    for layout in layouts:
+        items.append(ITEM_TEMPLATE.format(
+            label=label(layout),
+            command=os.path.join(DISPLAY_DIR, layout),
+        ))
+    print(MENU_TEMPLATE.format(
+        items="".join(items),
+    ))
+
+
+
+if __name__ == '__main__':
+    menu()

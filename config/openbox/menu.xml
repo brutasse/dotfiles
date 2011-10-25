@@ -79,11 +79,7 @@
 </menu>
 
 <menu id="system-menu" label="Openbox">
-	<item label="Display">
-		<action name="Execute">
-			<command>arandr</command>
-		</action>
-	</item>
+  <menu id="display-menu" label="Display" execute="display-menu"/>
   <item label="Lock Screen">
     <action name="Execute">
       <command>xlock +usefirst +mousemotion +description -mode blank -bg black -fg grey30 -timeout 1 -info " " -username " " -password ""</command>
