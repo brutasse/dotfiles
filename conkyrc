@@ -16,7 +16,7 @@ default_color white
 default_shade_color black
 default_outline_color black
 alignment bottom_right
-gap_x 130
+gap_x 160
 gap_y 5
 no_buffers no
 uppercase no
@@ -25,4 +25,5 @@ use_spacer none
 draw_graph_borders no
 
 TEXT
-${time %k:%M} - ${time %A, %B %d} - Battery : ${color #88aadd}${battery BAT0} (${battery_time BAT0}) ${color #ffffff} - ${hwmon 0 temp 2}/${hwmon 1 temp 1}°C 
+${time %k:%M} - ${time %A, %B %d} - Battery : ${color #88aadd}${battery BAT0} (${battery_time BAT0})
+#${color #ffffff} - ${hwmon 0 temp 2}/${hwmon 1 temp 1}°C
