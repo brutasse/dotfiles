@@ -39,7 +39,7 @@ export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
 
 # [user] [dir] $
-PS1=' \[\033[01;34m\][\[\033[01;33m\]\W\[\033[01;34m\]] \[\033[01;33m\]$\[\033[00m\] '
+PS1=' \[\033[01;34m\][\[\033[01;33m\]\W\[\033[01;34m\]] \[\033[00;35m\]$(vcprompt)\[\033[01;33m\]$\[\033[00m\] '
 
 test -n "$DISPLAY" && export TERM=xterm-color
 export TERM=rxvt-unicode
