@@ -95,7 +95,7 @@
   </item>
   <item label="Shutdown">
     <action name="Execute">
-       <command>gksu "shutdown -h 0"</command>
+      <command>down</command>
     </action>
   </item>
 </menu>
