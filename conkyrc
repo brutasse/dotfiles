@@ -25,5 +25,5 @@ use_spacer none
 draw_graph_borders no
 
 TEXT
-${time %k:%M} - ${time %A, %B %d} - Battery : ${color #88aadd}${battery BAT0} (${battery_time BAT0})
+${time %k:%M} - ${time %A, %B %d} - Battery : ${color #88aadd}${battery BAT0} (${battery_time BAT0})${color #ffffff} - Network: ${wireless_essid eth0}
 #${color #ffffff} - ${hwmon 0 temp 2}/${hwmon 1 temp 1}°C
