@@ -22,10 +22,6 @@ fi
 alias ls='ls --color=auto'
 eval `dircolors -b`
 
-# Colorized grep
-export GREP_COLOR="1;33"
-alias grep='grep --color=auto'
-
 # Keep the color in less
 alias less='less -R'
 
