@@ -33,14 +33,8 @@ xset m 2/3 4
 # MPD
 mpd ~/.mpd/mpd.conf &
 
-# Wallpaper
-#while true;
-#do
-#   find $HOME/Photos/wallpapers -type f -name '*.jpg' -o -name '*.png' | shuf -n 1 | xargs feh --bg-scale
-#   sleep 15m
-#done &
-
-feh --bg-fill ~/Photos/wallpapers/26.jpg &
+# Background image
+feh --bg-fill ~/Documents/26.jpg &
 
 dropboxd &
 
@@ -51,16 +45,11 @@ fi
 
 cd ~/
 
-#stalonetray -t -g 124x48+0-0 --icon-gravity SW --window-layer bottom --sticky &
 trayer --edge bottom --align right --transparent true --alpha 255 --widthtype pixel --width 130 &
-
-(sleep 3 && nm-applet --sm-disable) &
 
 conky &
 
 xflux -l 7 &
-
-#skippy &
 
 # Make GTK apps look and behave how they were set up in the gnome config tools
 if test -x /usr/libexec/gnome-settings-daemon >/dev/null; then
@@ -74,6 +63,3 @@ DESKTOP_ENV=""
 if which /usr/lib/openbox/xdg-autostart >/dev/null 2>&1; then
   /usr/lib/openbox/xdg-autostart $DESKTOP_ENV
 fi
-
-# Dotjs for Chromium
-cd ~/.js && python -m http.server 3131 &
