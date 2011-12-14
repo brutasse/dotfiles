@@ -44,7 +44,7 @@
 *loginShell: true
 
 *font:xft:Inconsolata:pixelsize=14:autohint=1
-URxvt.letterSpace: -2
+URxvt.letterSpace: -1
 
 Xft.dpi:        110
 Xft.antialias:  true
