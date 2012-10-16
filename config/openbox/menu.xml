@@ -125,7 +125,7 @@
   </item>
   <item label="Hotot">
     <action name="Execute">
-      <command>hotot</command>
+      <command>hotot-gtk3</command>
       <startupnotify>
         <enabled>yes</enabled>
         <wmclass>hotot</wmclass>
