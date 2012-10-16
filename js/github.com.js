@@ -1,5 +1,0 @@
-$('#header .logo img')
-	.css('margin-top', '-10px')
-	.attr('src', 'https://img.skitch.com/20110207-x4s8eys3uy641yk72jigt38bby.png')
-	.attr('width', '60px')
-	.attr('height', '49px')
