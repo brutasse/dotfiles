@@ -7,6 +7,7 @@ config/Thunar
 config/Trolltech.conf
 config/Ulduzsoft
 config/autostart
+config/blueman
 config/brasero
 config/chromium
 config/dconf
@@ -15,17 +16,24 @@ config/eog
 config/evince
 config/gedit
 config/ghb
+config/gthumb
 config/gtk-2.0
 config/hotot
+config/hub
 config/inkscape
 config/itunes graphite.vlt
+config/leafpad
+config/libimobiledevice
+config/libreoffice
 config/midori
 config/mousepad
+config/pavucontrol.ini
 config/recorder
 config/sonata
 config/thoggen
 config/transmission
 config/ultimate-smash-friends
+config/viewnior
 config/vlc
 config/xarchiver
 config/xfburn
