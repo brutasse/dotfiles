@@ -4,7 +4,7 @@
 
 !black
 *color0: #000000
-*color8: #000000
+*color8: #999999
 !red
 *color1: #e04343
 *color9: #dd6e6e
@@ -43,7 +43,7 @@
 *transparent: false
 *loginShell: true
 
-*font:xft:Inconsolata:pixelsize=14:autohint=1
+*font:xft:Inconsolata:pixelsize=15:autohint=1,xft:DejaVu Sans Mono
 URxvt.letterSpace: -1
 
 Xft.dpi:        110
