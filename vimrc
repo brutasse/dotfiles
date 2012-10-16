@@ -56,6 +56,8 @@ if has("autocmd")
 	let python_highlight_exceptions=0
 	let python_highlight_builtins=0
 
+	autocmd FileType javascript setlocal ts=2 sw=2 sts=2 textwidth=0 smartindent
+
 	" Autocomplete
 	autocmd FileType java setlocal omnifunc=javacomplete#Complete
 	autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
@@ -71,11 +73,12 @@ if has("autocmd")
 
 	au FileType helpfile setlocal nonumber  " no line numbers when viewing help
 	au BufRead,BufNewFile *.html set filetype=htmldjango " Who does HTML anyway
+	au BufRead,BufNewFile *.sls set filetype=yaml
 
 	au FileType text setlocal nonumber   " no line numbers when viewing text
 	au FileType text,rst,tex setlocal textwidth=78 
 	au FileType rst setlocal sw=4 ts=4 sts=4
-
+	au FileType javascript,python,htmldjango au BufWritePre <buffer> :%s/\s\+$//e
 endif " has("audocmd")
 
 " Keyboard mappings
