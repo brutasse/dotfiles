@@ -5,21 +5,16 @@ xrandr --dpi 110
 setxkbmap -model macintosh ch fr &
 xbindkeys &
 
-# Remote control
-irexec &
-
 # SSH agent
 eval `ssh-agent` &
 
 eval `gnome-keyring-daemon`
 
 # Volume control
-amixer set Master 85% unmute
-amixer set Headphone 85% unmute
-amixer set PCM 85% unmute
-amixer set 'Front Speaker' 85% unmute
-amixer set 'Surround Speaker' unmute
-amixer set 'Surround Speaker Playback Volum' 85% unmute
+amixer set Master 80% unmute
+amixer set Headphone 80% unmute
+amixer set Speaker 80% unmute
+amixer set PCM 80% unmute
 
 # Disable touchpad while typing
 syndaemon -t -i 1 -d &
@@ -33,21 +28,16 @@ xset m 2/3 4
 # MPD
 mpd ~/.mpd/mpd.conf &
 
-# Background image
-feh --bg-fill ~/Documents/26.jpg &
-
-dropboxd &
+# wait for the internet connection to work
+(sleep 60 && dropboxd) &
 
 # D-bus
 if which dbus-launch >/dev/null 2>&1 && test -z "$DBUS_SESSION_BUS_ADDRESS"; then
        eval `dbus-launch --sh-syntax --exit-with-session`
 fi
 
-cd ~/
-
-trayer --edge bottom --align right --transparent true --alpha 255 --widthtype pixel --width 130 &
-
-conky &
+cd ~
+./.bin/post-display
 
 xflux -l 7 &
 
