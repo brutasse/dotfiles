@@ -1,0 +1,28 @@
+#! /home/brute/.virtualenvs/s3/bin/python
+import os.path
+import sys
+import urlparse
+
+from boto.s3.connection import S3Connection
+from configobj import ConfigObj
+
+conf = ConfigObj(os.path.join(os.path.expanduser('~'), '.s3cfg'))['default']
+
+
+def url():
+    connection = S3Connection(conf['access_key'], conf['secret_key'])
+    url = urlparse.urlparse(sys.argv[1])
+    bucket = connection.get_bucket(url.netloc)
+    print connection.generate_url(3600 * 24 * 30,
+                                  method='GET',
+                                  bucket=bucket.name,
+                                  key=url.path[1:],
+                                  query_auth=True)
+
+
+if __name__ == '__main__':
+    if len(sys.argv) != 2:
+        print "Usage: %s s3://BUCKET/PATH" % sys.argv[0]
+        sys.exit(1)
+    url()
+
