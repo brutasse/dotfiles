@@ -60,6 +60,7 @@ venv_cd() {
 }
 alias cd="venv_cd"
 
+export PATH=$PATH:~/.bin
 export PATH=$PATH:/home/brute/code/libs/sandbox/gpyretest/bin
 export LD_LIBRARY_PATH=/usr/lib
 export PYTHONSTARTUP=~/.pythonrc
