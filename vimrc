@@ -74,6 +74,7 @@ if has("autocmd")
 	au FileType helpfile setlocal nonumber  " no line numbers when viewing help
 	au BufRead,BufNewFile *.html set filetype=htmldjango " Who does HTML anyway
 	au BufRead,BufNewFile *.sls set filetype=yaml
+	au FileType yaml setlocal sw=2 ts=2 sts=2
 
 	au FileType text setlocal nonumber   " no line numbers when viewing text
 	au FileType text,rst,tex setlocal textwidth=78 
