@@ -12,6 +12,7 @@
 	di = diff
 	oops = commit --amend -a -C HEAD
 	lol = log --graph --decorate --pretty=oneline --abbrev-commit
+	metal = merge
 
 [color]
 	ui = auto
