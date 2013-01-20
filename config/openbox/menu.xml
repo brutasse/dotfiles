@@ -108,7 +108,7 @@
   </item>
   <item label="Thunar">
     <action name="Execute">
-      <command>dbus-launch Thunar</command>
+      <command>Thunar</command>
       <startupnotify>
         <enabled>yes</enabled>
       </startupnotify>
