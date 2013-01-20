@@ -216,9 +216,6 @@
   <keybind key="W-d">
     <action name="ToggleShowDesktop"/>
   </keybind>
-	<keybind key="C-space">
-		<action name="execute"><execute>grun</execute></action>
-	</keybind>
 
   <!-- Keybindings for windows -->
   <keybind key="A-F4">

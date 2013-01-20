@@ -41,6 +41,8 @@ cd ~
 
 xflux -l 7 &
 
+kupfer &
+
 # Make GTK apps look and behave how they were set up in the gnome config tools
 if test -x /usr/libexec/gnome-settings-daemon >/dev/null; then
   /usr/libexec/gnome-settings-daemon &
