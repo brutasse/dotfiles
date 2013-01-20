@@ -13,6 +13,8 @@ import smtpd
 import socket
 import sys
 
+from __future__ import print_function
+
 
 class FakeServer(smtpd.SMTPServer):
 
@@ -23,29 +25,21 @@ class FakeServer(smtpd.SMTPServer):
         self.path = path
 
     def process_message(self, peer, mailfrom, rcpttos, data):
-        message("Incoming mail")
         for recipient in rcpttos:
-            message("Capturing mail to %s" % recipient)
             count = self.RECIPIENT_COUNTER.get(recipient, 0) + 1
             self.RECIPIENT_COUNTER[recipient] = count
-            filename = os.path.join(self.path, "%s.%s" % (recipient, count))
-            filename = filename.replace("<", "").replace(">", "")
-            f = file(filename, "w")
-            f.write(data + "\n")
-            f.close()
-            message("Mail to %s saved" % recipient)
-        message("Incoming mail dispatched")
+            print(data)
 
 
 def usage():
-    print "Usage: %s [OPTIONS]" % os.path.basename(sys.argv[0])
-    print """
+    print("Usage: %s [OPTIONS]" % os.path.basename(sys.argv[0]))
+    print("""
 OPTIONS
         --host=<localdomain>
         --port=<port number>
         --path=<path to save mails>
         --log=<optional file to append messages to>
-        --background"""
+        --background""")
 
 
 def quit(reason=None):
@@ -67,7 +61,7 @@ def message(text):
         f.write(text + "\n")
         f.close()
     else:
-        print text
+        print(text)
 
 
 def handle_signals():
