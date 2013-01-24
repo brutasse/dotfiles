@@ -3,7 +3,7 @@
 # fakemail (Python version)
 #
 # $Id: fakemail.py,v 1.1 2005/08/29 22:04:55 lastcraft Exp $
-
+from __future__ import print_function
 
 import asyncore
 import getopt
@@ -12,8 +12,6 @@ import signal
 import smtpd
 import socket
 import sys
-
-from __future__ import print_function
 
 
 class FakeServer(smtpd.SMTPServer):
