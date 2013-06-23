@@ -23,7 +23,7 @@ STEPS = 10
 
 
 def die():
-    print(sys.argv)
+    print(__doc__.strip())
     sys.exit(1)
 
 
