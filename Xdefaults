@@ -45,6 +45,10 @@
 
 *font:xft:Inconsolata:pixelsize=15:autohint=1,xft:DejaVu Sans Mono
 URxvt.letterSpace: -1
+URxvt.perl-lib: /home/brute/code/libs/urxvt-perls
+URxvt.perl-ext-common: ...,clipboard
+URxvt.keysym.C-x: perl:clipboard:copy
+URxvt.keysym.C-v: perl:clipboard:paste
 
 Xft.dpi:        110
 Xft.antialias:  true
