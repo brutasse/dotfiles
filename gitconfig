@@ -8,11 +8,10 @@
 
 [alias]
 	ci = commit
-	st = status
+	st = status -bs
 	di = diff
-	oops = commit --amend -a -C HEAD
 	lol = log --graph --decorate --pretty=oneline --abbrev-commit
-	metal = merge
+	laundry = !sh -c 'git branch --merged master | /usr/bin/grep -Ev \"(master|prod)$\" | xargs git branch -d && git remote prune origin'
 
 [color]
 	ui = auto
