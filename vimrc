@@ -39,6 +39,8 @@ colorscheme fruity256
 
 syntax on           " syntax highlighing
 
+execute pathogen#infect()
+
 if has("autocmd")
 	set nocp
 	filetype plugin indent on		" enable file type detection
@@ -90,7 +92,8 @@ map <F6> <Esc>:tabnext<CR>
 map <F7> <Esc>:setlocal spell spelllang=en_gb<CR>
 map <F8> <Esc>:setlocal nospell<CR>
 
-nmap <leader>l :set list!<CR>
+let mapleader=","
+nmap <silent><leader>l :set list!<CR>
 set listchars=tab:➜\ ,eol:¬
 
 " taglist plugin
