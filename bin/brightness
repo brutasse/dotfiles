@@ -1,0 +1,66 @@
+#! /usr/bin/env python
+"""Adjust brightness.
+
+Usage:
+  brightness (keyboard|screen) (inc|dec)
+"""
+import operator
+import sys
+
+
+DEVICES = {
+    'screen': {
+        'brightness': '/sys/class/backlight/intel_backlight/brightness',
+        'max': '/sys/class/backlight/intel_backlight/max_brightness',
+    },
+    'keyboard': {
+        'brightness': '/sys/class/leds/smc::kbd_backlight/brightness',
+        'max': '/sys/class/leds/smc::kbd_backlight/max_brightness',
+    },
+}
+
+STEPS = 10
+
+
+def die():
+    print(sys.argv)
+    sys.exit(1)
+
+
+def set_brightness(device, action):
+    paths = DEVICES[device]
+    with open(paths['max'], 'r') as f:
+        max_brightness = int(f.read())
+
+    increment = max_brightness // (STEPS - 1) + 1
+    steps = [min(i * increment, max_brightness) for i in range(STEPS)]
+    steps += [max_brightness]
+
+    with open(paths['brightness'], 'r') as f:
+        current = int(f.read())
+
+    if action == 'dec':
+        steps = steps[::-1]
+    op = operator.lt if action == 'inc' else operator.gt
+
+    for value in steps:
+        if op(current, value):
+            break
+
+    with open(paths['brightness'], 'w') as f:
+        f.write(str(value))
+
+
+if __name__ == '__main__':
+    if len(sys.argv) != 3:
+        die()
+
+    device = sys.argv[1]
+    if not device in ('keyboard', 'screen'):
+        die()
+
+    action = sys.argv[2]
+    if not action in ('inc', 'dec'):
+        die()
+
+    set_brightness(device, action)

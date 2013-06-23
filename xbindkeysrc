@@ -21,3 +21,15 @@
 
 "thunar"
  c:212
+
+"sudo brightness keyboard inc"
+ c:238
+
+"sudo brightness keyboard dec"
+ c:237
+
+"sudo brightness screen inc"
+ c:233
+
+"sudo brightness screen dec"
+ c:232
