@@ -60,7 +60,31 @@ venv_cd() {
 }
 alias cd="venv_cd"
 
+fix_png() {
+	for i in `ls -x *.png`
+		do pngcrush -ow $i
+	done
+}
+
 export PATH=$PATH:~/.bin
 export PATH=$PATH:/home/brute/code/libs/sandbox/gpyretest/bin
 export LD_LIBRARY_PATH=/usr/lib
 export PYTHONSTARTUP=~/.pythonrc
+
+function pwgrep() {
+	gpg --batch -q -d -r bruno@renie.fr $HOME/.pwdb.asc | grep $*
+}
+
+function pwcat() {
+	gpg --batch -q -d -r bruno@renie.fr $HOME/.pwdb.asc
+}
+
+function pwedit() {
+	[ -z $EDITOR ] && EDITOR=vi
+	file=`mktemp /tmp/pwedit.XXXXXX`
+	gpg -q -d --batch -r bruno@renie.fr $HOME/.pwdb.asc > $file && \
+	$EDITOR $file && \
+	gpg -q --batch -a -e -r bruno@renie.fr $file && \
+	mv ${file}.asc $HOME/.pwdb.asc
+	rm -f $file ${file}.asc
+}
