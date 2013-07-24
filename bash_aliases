@@ -4,9 +4,8 @@ alias bim="vim"
 alias got="git"
 
 # Useful
-alias grep="ack"
 alias webshare='python -m http.server'
-alias delpyc='find . -iname "*.pyc" -exec rm {} \;'
+alias delpyc='find . -iname "*.pyc" -exec rm {} \; ; find . -type d -iname __pycache__ -exec rm -r {} \;'
 alias balsamiq="adobe-air ~/.bin/MockupsForDesktop.air"
 alias open="xdg-open"
 # http://stevelosh.com/projects/t/
