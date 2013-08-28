@@ -72,7 +72,7 @@ export LD_LIBRARY_PATH=/usr/lib
 export PYTHONSTARTUP=~/.pythonrc
 
 function pwgrep() {
-	gpg --batch -q -d -r bruno@renie.fr $HOME/.pwdb.asc | grep $*
+	gpg --batch -q -d -r bruno@renie.fr $HOME/.pwdb.asc | grep -i $*
 }
 
 function pwcat() {
