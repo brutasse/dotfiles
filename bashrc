@@ -55,8 +55,20 @@ has_virtualenv() {
 	fi
 }
 
+has_node_modules() {
+	if [ -d node_modules/.bin ]; then
+		export _oldpath=$PATH
+		export PATH=node_modules/.bin:$PATH
+	else
+		if [ -n "$_oldpath" ]; then
+			export PATH=$_oldpath
+			unset _oldpath
+		fi
+	fi
+}
+
 venv_cd() {
-	cd "$@" && has_virtualenv
+	cd "$@" && has_virtualenv && has_node_modules
 }
 alias cd="venv_cd"
 
