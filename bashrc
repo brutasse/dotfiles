@@ -68,7 +68,7 @@ has_node_modules() {
 }
 
 venv_cd() {
-	cd "$@" && has_virtualenv && has_node_modules
+	\cd "$@" && has_virtualenv && has_node_modules
 }
 alias cd="venv_cd"
 
