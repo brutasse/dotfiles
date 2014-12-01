@@ -1,13 +1,13 @@
 background yes
 use_xft yes
-xftfont DejaVu Sans Condensed:size=7
-xftalpha 0.8
+xftfont Fira Sans:size=7
+xftalpha 0.5
 out_to_console no
 update_interval 1
 total_run_times 0
 double_buffer yes
 draw_shades yes
-draw_outline no
+draw_outline yes
 draw_borders no
 draw_graph_borders yes
 stippled_borders 5
@@ -25,5 +25,4 @@ use_spacer none
 draw_graph_borders no
 
 TEXT
-${time %k:%M} - ${time %A, %B %d} - Battery : ${color #88aadd}${battery BAT0} (${battery_time BAT0})${color #ffffff} - Network: ${wireless_essid wlan0}
-#${color #ffffff} - ${hwmon 0 temp 2}/${hwmon 1 temp 1}°C
+${time %k:%M} - ${time %A, %B %d} - Battery : ${color #88aadd}${battery BAT0} (${battery_time BAT0})${color #ffffff} - ${wireless_essid wlan0} - Backup: ${color #88aadd}${exec cat .backup-status}
