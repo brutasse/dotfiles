@@ -80,8 +80,10 @@ fix_png() {
 
 export PATH=$PATH:~/.bin
 export PATH=$PATH:/home/brute/code/libs/sandbox/gpyretest/bin
+export PATH=~/.local/bin:$PATH
 export LD_LIBRARY_PATH=/usr/lib
 export PYTHONSTARTUP=~/.pythonrc
+export PYTHONDONTWRITEBYTECODE=1
 
 function pwgrep() {
 	gpg --batch -q -d -r bruno@renie.fr $HOME/.pwdb.asc | grep -i $*
@@ -99,4 +101,39 @@ function pwedit() {
 	gpg -q --batch -a -e -r bruno@renie.fr $file && \
 	mv ${file}.asc $HOME/.pwdb.asc
 	rm -f $file ${file}.asc
+}
+
+function pwcopy() {
+	echo -n `pwgrep $* | awk '{print $nf}'` | xclip -selection clipboard
+}
+
+function fuck() {
+	echo
+	echo " (╯°□°）╯︵$(echo $2|flip &2>/dev/null)"
+	echo
+}
+
+function pypi() {
+	open https://pypi.python.org/pypi/$*
+}
+
+function strftime() {
+	echo
+	echo "   %a  Weekday as locale’s abbreviated name.                      Wed"
+	echo "   %A  Weekday as locale’s full name.                             Wednesday"
+	echo "   %d  Day of the month as a zero-padded decimal number.          25"
+	echo "   %b  Month as locale’s abbreviated name.                        Dec"
+	echo "   %B  Month as locale’s full name.                               December"
+	echo "   %m  Month as a zero-padded decimal number.                     12"
+	echo "   %y  Year without century as a zero-padded decimal number.      13"
+	echo "   %Y  Year with century as a decimal number.                     2014"
+	echo "   %H  Hour (24-hour clock) as a zero-padded decimal number.      17"
+	echo "   %I  Hour (12-hour clock) as a zero-padded decimal number.      05"
+	echo "   %p  Locale’s equivalent of either AM or PM.                    PM"
+	echo "   %M  Minute as a zero-padded decimal number.                    15"
+	echo "   %S  Second as a zero-padded decimal number.                    30"
+	echo "   %f  Microsecond as a decimal number, zero-padded on the left.  000000"
+	echo "   %z  UTC offset in the form +HHMM or -HHMM."
+	echo "   %Z  Time zone name."
+	echo
 }
