@@ -35,7 +35,10 @@ set directory=~/.vim/swap,~/tmp
 
 set formatprg=par\ -w78q
 
+set background=dark
+let base16colorspace=256  " Access colors present in 256 colorspace
 colorscheme fruity256
+"colorscheme base16-default
 
 syntax on           " syntax highlighing
 
@@ -44,7 +47,7 @@ execute pathogen#infect()
 if has("autocmd")
 	set nocp
 	filetype plugin indent on		" enable file type detection
-	let g:pydiction_location = '/usr/share/pydiction/complete-dict'
+	"let g:pydiction_location = '/usr/share/pydiction/complete-dict'
 
 
 	autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
@@ -53,19 +56,17 @@ if has("autocmd")
 	" numbers of spaces of tab character | 4 for C++
 	autocmd FileType cpp setlocal tabstop=4 shiftwidth=4 expandtab 
 	autocmd FileType c setlocal tabstop=8 shiftwidth=8
-	autocmd FileType python setlocal ts=4 sw=4 sts=4 et textwidth=0 smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class,with
-	let python_highlight_all=1
-	let python_highlight_exceptions=0
-	let python_highlight_builtins=0
+	autocmd FileType python setlocal ts=4 sw=4 sts=4 et textwidth=0 smartindent formatoptions=croqj comments=:#\:,:#
+	"autocmd FileType python setlocal ts=4 sw=4 sts=4 et textwidth=0 smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class,with
 
-	autocmd FileType javascript setlocal ts=2 sw=2 sts=2 textwidth=0 smartindent
+	autocmd FileType javascript setlocal ts=4 sw=4 sts=4 et textwidth=0 smartindent
 
 	" Autocomplete
-	autocmd FileType java setlocal omnifunc=javacomplete#Complete
-	autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-	autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-	autocmd FileType html setlocal omnifunc=htmlcomplete#CompleteTags
-	autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+	"autocmd FileType java setlocal omnifunc=javacomplete#Complete
+	"autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+	"autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+	"autocmd FileType html setlocal omnifunc=htmlcomplete#CompleteTags
+	"autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 
 	" for both CSS and HTML, use genuine tab characters for indentation,
 	" to make files a few bytes smaller:
@@ -107,3 +108,16 @@ iab #r #! /usr/bin/ruby
 iab #y #! /usr/bin/python
 iab #l #! /usr/bin/perl
 ab bl <Esc>bi{% block <Esc>ea %}{% endblock %}<Esc>h%i
+
+" markdown.vim
+let g:vim_markdown_folding_disabled=1
+
+" javascript.vim
+let javascript_enable_domhtmlcss=1
+let b:javascript_fold=0
+
+" vim-python-combined
+let python_highlight_all=1
+let python_highlight_exceptions=0
+
+inoremap # X<BS>#
