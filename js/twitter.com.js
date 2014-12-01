@@ -1,0 +1,1 @@
+$(".tweet[data-promoted]").remove();
