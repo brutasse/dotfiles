@@ -6,23 +6,40 @@ import urlparse
 from boto.s3.connection import S3Connection
 from configobj import ConfigObj
 
-conf = ConfigObj(os.path.join(os.path.expanduser('~'), '.s3cfg'))['default']
 
-
-def url():
-    connection = S3Connection(conf['access_key'], conf['secret_key'])
-    url = urlparse.urlparse(sys.argv[1])
+def url(path, conf):
+    secure = {'true': True, 'false': False}[conf['use_https'].lower()]
+    port = int(conf.get('proxy_port', 443 if secure else 80))
+    if port == 0:
+        port = 443 if secure else 80
+    host = conf.get('proxy_host') or conf['host_base']
+    connection = S3Connection(aws_access_key_id=conf['access_key'],
+                              aws_secret_access_key=conf['secret_key'],
+                              host=host,
+                              port=port,
+                              is_secure=secure)
+    url = urlparse.urlparse(path)
     bucket = connection.get_bucket(url.netloc)
-    print connection.generate_url(3600 * 24 * 30,
+    print(connection.generate_url(3600 * 24 * 30,
                                   method='GET',
                                   bucket=bucket.name,
                                   key=url.path[1:],
-                                  query_auth=True)
+                                  query_auth=True))
 
 
 if __name__ == '__main__':
-    if len(sys.argv) != 2:
-        print "Usage: %s s3://BUCKET/PATH" % sys.argv[0]
+    if len(sys.argv) < 2:
+        print("Usage: %s s3://BUCKET/PATH" % sys.argv[0])
         sys.exit(1)
-    url()
+
+    if '-c' in sys.argv:
+        index = sys.argv.index('-c')
+        config_file = sys.argv[index + 1]
+        [path] = sys.argv[1:index] + sys.argv[index + 2:]
+    else:
+        config_file = os.path.join(os.path.expanduser('~'), '.s3cfg')
+        path = sys.argv[1]
+
+    conf = ConfigObj(config_file)['default']
+    url(path, conf)
 
