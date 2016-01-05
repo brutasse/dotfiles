@@ -7,20 +7,20 @@
 "sonata pp"
  c:172
 
-"amixer set Master 5+"
+"amixer set Master 100+"
  c:123
 
-"amixer set Master 5-"
+"amixer set Master 100-"
  c:122
 
 "amixer set Master toggle"
  c:121
 
 "urxvt"
- c:128
+ c:69
 
 "thunar"
- c:212
+ c:70
 
 "sudo brightness keyboard inc"
  c:238

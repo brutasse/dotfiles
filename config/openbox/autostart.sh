@@ -1,35 +1,28 @@
 # DPI
-xrandr --dpi 110
+xrandr --dpi 240
+gsettings set org.gnome.desktop.interface scaling-factor 2
 
 # Keyboard
-setxkbmap -model macintosh ch fr
+setxkbmap -model dell ch fr
 xbindkeys
 
-# SSH agent
-eval `ssh-agent`
+# GTK
+export GTK_THEME=Zukitwo
+export GTK2_RC_FILES=/usr/share/themes/Zukitwo/gtk-2.0/gtkrc
 
 # GPG agent
 eval `gpg-agent --daemon`
 
-eval `gnome-keyring-daemon`
+#eval `gnome-keyring-daemon`
 
 # Volume control
-amixer set Master 80% unmute
-amixer set Headphone 80% unmute
-amixer set Speaker 80% unmute
-amixer set PCM 80% unmute
+amixer set Master 10% unmute
 
 # Blank screen after 5 minutes
 xset dpms 300
 
 # Mouse sensiviy
 xset m 2/3 4
-
-# MPD
-mpd ~/.mpd/mpd.conf &
-
-# wait for the internet connection to work
-(sleep 60 && dropboxd) &
 
 # D-bus
 if which dbus-launch >/dev/null 2>&1 && test -z "$DBUS_SESSION_BUS_ADDRESS"; then
@@ -38,7 +31,5 @@ fi
 
 cd ~
 ./.bin/post-display
-
-xflux -l 7 &
 
 kupfer --no-splash &

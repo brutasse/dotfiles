@@ -25,4 +25,4 @@ use_spacer none
 draw_graph_borders no
 
 TEXT
-${time %k:%M} - ${time %A, %B %d} - Battery : ${color #88aadd}${battery BAT0} (${battery_time BAT0})${color #ffffff} - ${wireless_essid wlp2s0} - Backup: ${color #88aadd}${exec cat .backup-status}
+${time %k:%M} - ${time %A, %B %d} - Battery : ${color #88aadd}${battery BAT0} (${battery_time BAT0})${color #ffffff} - ${wireless_essid wlp58s0} - Backup: ${color #88aadd}${exec cat .backup-status}
