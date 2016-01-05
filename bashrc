@@ -103,6 +103,13 @@ function pwedit() {
 	rm -f $file ${file}.asc
 }
 
+function aur() {
+	cd /var/abs/local
+	git clone https://aur.archlinux.org/$1.git
+	cd $1
+	makepkg
+}
+
 function pwcopy() {
 	echo -n `pwgrep $* | awk '{print $nf}'` | xclip -selection clipboard
 }
