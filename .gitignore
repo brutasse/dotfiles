@@ -23,6 +23,11 @@ config/libreoffice
 config/.libreoffice
 config/midori
 config/mousepad
+config/mpd/db
+config/mpd/log
+config/mpd/pid
+config/mpd/state
+config/mpd/sticker.sql
 config/NetManagers
 config/pavucontrol.ini
 config/pip/cache
