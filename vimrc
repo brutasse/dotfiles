@@ -103,10 +103,10 @@ set listchars=tab:➜\ ,eol:¬
 " Autocomplete
 iab #i #include
 iab #d #define
-iab #s #! /bin/sh
-iab #r #! /usr/bin/ruby
-iab #y #! /usr/bin/python
-iab #l #! /usr/bin/perl
+iab #s #!/bin/sh
+iab #r #!/usr/bin/ruby
+iab #y #!/usr/bin/env python
+iab #l #!/usr/bin/perl
 ab bl <Esc>bi{% block <Esc>ea %}{% endblock %}<Esc>h%i
 
 " markdown.vim
