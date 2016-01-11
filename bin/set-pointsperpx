@@ -1,0 +1,46 @@
+#!/usr/bin/env python
+import os
+import re
+import subprocess
+import sys
+
+BASE_DPI = 120
+sizes = {
+    1: {'console_font': 16,
+        'letterspace': '-1'},
+    2: {'console_font': 30},
+}
+dpi_pattern = re.compile('Xft.dpi:        \d+')
+font_pattern = re.compile('pixelsize=\d+')
+letterspace_pattern = re.compile('URxvt.letterSpace: \d+')
+
+
+if __name__ == '__main__':
+    multiplicator = int(sys.argv[1])
+
+    dpi = BASE_DPI * multiplicator
+    font_size = sizes[multiplicator]['console_font']
+
+    xdefaults = os.path.expanduser('~/.Xdefaults')
+    with open(xdefaults, 'r') as f:
+        content = f.read()
+
+    content = dpi_pattern.sub('Xft.dpi:        {0}'.format(dpi), content)
+    content = font_pattern.sub('pixelsize={0}'.format(font_size), content)
+    content = letterspace_pattern.sub('URxvt.letterSpace: {0}'.format(
+        sizes[multiplicator].get('letterspace', '0')), content)
+    with open(xdefaults, 'w') as f:
+        f.write(content)
+
+    with open(os.path.expanduser('~/.config/chromium-flags.conf'), 'w') as f:
+        f.write('--force-device-scale-factor={0}'.format(multiplicator))
+
+    subprocess.check_call('xrandr --dpi {0}'.format(dpi), shell=True)
+    subprocess.check_call('gsettings set org.gnome.desktop.interface '
+                          'scaling-factor {0}'.format(multiplicator),
+                          shell=True)
+    subprocess.check_call(
+        'xrdb -merge {0}'.format(os.path.expanduser('~/.Xdefaults')),
+        shell=True,
+    )
+    subprocess.check_call('openbox --restart', shell=True)
