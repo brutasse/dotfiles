@@ -40,7 +40,7 @@ if __name__ == '__main__':
                           'scaling-factor {0}'.format(multiplicator),
                           shell=True)
     subprocess.check_call(
-        'xrdb -merge {0}'.format(os.path.expanduser('~/.Xdefaults')),
+        'xrdb -merge {0}'.format(xdefaults),
         shell=True,
     )
     subprocess.check_call('openbox --restart', shell=True)
