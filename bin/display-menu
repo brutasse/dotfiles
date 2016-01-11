@@ -29,18 +29,17 @@ def label(layout):
     return " ".join(name.split('-')).capitalize()
 
 
+def make_item(layout):
+    return ITEM_TEMPLATE.format(label=label(layout),
+                                command=os.path.join(DISPLAY_DIR, layout))
+
+
 def menu():
     layouts = os.listdir(DISPLAY_DIR)
-    items = []
-    for layout in layouts:
-        items.append(ITEM_TEMPLATE.format(
-            label=label(layout),
-            command=os.path.join(DISPLAY_DIR, layout),
-        ))
+    items = [make_item(layout) for layout in layouts]
     print(MENU_TEMPLATE.format(
         items="".join(items),
     ))
-
 
 
 if __name__ == '__main__':

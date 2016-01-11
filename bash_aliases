@@ -15,6 +15,7 @@ alias check_csrf="grep -r \"CsrfResponseMiddleware\" * >/dev/null&& echo \"Don't
 alias git=hub
 alias slf="evince http://www.slf.ch/avalanche/bulletin/fr/gk_c_fr_complete.pdf"
 alias mpdupdate="mpc -h brutasse@localhost --wait update"
+alias fig="docker-compose"
 
 # Fun
 alias suit="svn"  # suit up
