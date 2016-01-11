@@ -12,7 +12,7 @@ sizes = {
 }
 dpi_pattern = re.compile('Xft.dpi:        \d+')
 font_pattern = re.compile('pixelsize=\d+')
-letterspace_pattern = re.compile('URxvt.letterSpace: \d+')
+letterspace_pattern = re.compile('URxvt.letterSpace: -?\d+')
 
 
 if __name__ == '__main__':
@@ -33,7 +33,7 @@ if __name__ == '__main__':
         f.write(content)
 
     with open(os.path.expanduser('~/.config/chromium-flags.conf'), 'w') as f:
-        f.write('--force-device-scale-factor={0}'.format(multiplicator))
+        f.write('--force-device-scale-factor={0}\n'.format(multiplicator))
 
     subprocess.check_call('xrandr --dpi {0}'.format(dpi), shell=True)
     subprocess.check_call('gsettings set org.gnome.desktop.interface '
