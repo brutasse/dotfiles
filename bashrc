@@ -46,7 +46,6 @@ export TMPDIR=/tmp
 export WORKON_HOME=$HOME/.virtualenvs
 source /usr/bin/virtualenvwrapper.sh
 
-export TEXINPUTS=".:~/Boulot/cv/sources/:"
 export PAGER=~/code/libs/mysqlpager/mypager.pl
 
 has_virtualenv() {
@@ -78,9 +77,7 @@ fix_png() {
 	done
 }
 
-export PATH=$PATH:~/.bin
-export PATH=$PATH:/home/brute/code/libs/sandbox/gpyretest/bin
-export PATH=~/.local/bin:$PATH
+export PATH=~/.local/bin:~/.bin:$PATH
 export LD_LIBRARY_PATH=/usr/lib
 export PYTHONSTARTUP=~/.pythonrc
 export PYTHONDONTWRITEBYTECODE=1
@@ -112,16 +109,6 @@ function aur() {
 
 function pwcopy() {
 	echo -n `pwgrep $* | awk '{print $nf}'` | xclip -selection clipboard
-}
-
-function fuck() {
-	echo
-	echo " (╯°□°）╯︵$(echo $2|flip &2>/dev/null)"
-	echo
-}
-
-function pypi() {
-	open https://pypi.python.org/pypi/$*
 }
 
 function strftime() {
