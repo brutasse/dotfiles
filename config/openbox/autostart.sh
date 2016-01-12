@@ -1,6 +1,5 @@
 # DPI
-xrandr --dpi 240
-gsettings set org.gnome.desktop.interface scaling-factor 2
+set-pointsperpx 2
 
 # Keyboard
 setxkbmap -model dell ch fr
@@ -12,8 +11,6 @@ export GTK2_RC_FILES=/usr/share/themes/Zukitwo/gtk-2.0/gtkrc
 
 # GPG agent
 eval `gpg-agent --daemon`
-
-#eval `gnome-keyring-daemon`
 
 # Volume control
 amixer set Master 10% unmute
@@ -33,3 +30,5 @@ cd ~
 ./.bin/post-display
 
 kupfer --no-splash &
+
+xss-lock -- i3lock -e -c 111111 &
