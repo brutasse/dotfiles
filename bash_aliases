@@ -19,5 +19,15 @@ alias json="python3 -m json.tool"
 
 alias docker-stopped="docker ps -a -q"
 alias docker-untagged="docker images -a | grep '^<none>' | tr -s ' ' | cut -d ' ' -f 3"
+alias docker-cleanup="docker-stopped | xargs docker rm && docker-untagged | xargs docker rmi"
+
 
 alias bytes="python -c 'import sys;print(\"\".join(list(map(lambda c: chr(int(c, 16)), sys.argv[1].split()))))'"
+
+pipsi-upgrade() {
+        for i in $(ls .local/venvs)
+        do
+                .local/venvs/$i/bin/pip install -U pip wheel
+                pipsi upgrade $i
+        done
+}
