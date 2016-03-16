@@ -9,6 +9,9 @@ xbindkeys
 export GTK_THEME=Zukitwo
 export GTK2_RC_FILES=/usr/share/themes/Zukitwo/gtk-2.0/gtkrc
 
+# QT
+export QT_STYLE_OVERRIDE="GTK+"
+
 # GPG agent
 eval `gpg-agent --daemon`
 
