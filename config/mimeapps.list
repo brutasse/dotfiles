@@ -49,3 +49,5 @@ application/json=org.gnome.gedit.desktop;
 text/x-python=org.gnome.gedit.desktop;
 image/tiff=gimp.desktop;evince-previewer.desktop;
 application/x-ptoptimizer-script=PTBatcherGUI.desktop;
+audio/mpeg=vlc.desktop;mpv.desktop;
+application/vnd.openxmlformats-officedocument.spreadsheetml.sheet=libreoffice-calc.desktop;
