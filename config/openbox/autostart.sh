@@ -6,8 +6,8 @@ setxkbmap -model dell ch fr
 xbindkeys
 
 # GTK
-export GTK_THEME=Zukitwo
-export GTK2_RC_FILES=/usr/share/themes/Zukitwo/gtk-2.0/gtkrc
+export GTK_THEME=Zukitre
+export GTK2_RC_FILES=/usr/share/themes/Zukitre/gtk-2.0/gtkrc
 
 # QT
 export QT_STYLE_OVERRIDE="GTK+"
