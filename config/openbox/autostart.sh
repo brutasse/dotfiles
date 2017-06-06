@@ -11,12 +11,14 @@ export GTK2_RC_FILES=/usr/share/themes/Zukitre/gtk-2.0/gtkrc
 
 # QT
 export QT_STYLE_OVERRIDE="GTK+"
+export QT_QPA_PLATFORMTHEME='gtk2'
 
 # GPG agent
 eval `gpg-agent --daemon`
 
 # Volume control
 amixer set Master 10% unmute
+amixer -c 0 set Headphone 50% unmute
 
 # Blank screen after 5 minutes
 xset dpms 300

@@ -40,9 +40,11 @@ let base16colorspace=256  " Access colors present in 256 colorspace
 colorscheme fruity256
 "colorscheme base16-default
 
-syntax on           " syntax highlighing
-
 execute pathogen#infect()
+
+filetype off
+call pathogen#runtime_append_all_bundles()
+syntax on           " syntax highlighing
 
 if has("autocmd")
 	set nocp
@@ -55,7 +57,7 @@ if has("autocmd")
 	" numbers of spaces to (auto)indent  | 8 for C
 	" numbers of spaces of tab character | 4 for C++
 	autocmd FileType cpp setlocal tabstop=4 shiftwidth=4 expandtab 
-	autocmd FileType c setlocal tabstop=8 shiftwidth=8
+	autocmd FileType c setlocal ts=4 sw=4 sts=4 et smartindent
 	autocmd FileType python setlocal ts=4 sw=4 sts=4 et textwidth=0 smartindent formatoptions=croqj comments=:#\:,:#
 	"autocmd FileType python setlocal ts=4 sw=4 sts=4 et textwidth=0 smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class,with
 
@@ -70,7 +72,7 @@ if has("autocmd")
 
 	" for both CSS and HTML, use genuine tab characters for indentation,
 	" to make files a few bytes smaller:
-	autocmd FileType html,xhtml,css,scss,xml,xsl,htmldjango setlocal noexpandtab sw=2 ts=2 textwidth=0
+	autocmd FileType html,xhtml,css,scss,xml,xsl,htmldjango setlocal et sw=4 ts=4 sts=4 textwidth=0
 	" Actually, no
 	"autocmd FileType html,xhtml,css,xml,xsl,htmldjango setlocal expandtab sw=2 ts=2 sts=2 textwidth=0
 
@@ -82,7 +84,7 @@ if has("autocmd")
 	au FileType text setlocal nonumber   " no line numbers when viewing text
 	au FileType text,rst,tex setlocal textwidth=78 
 	au FileType rst setlocal sw=4 ts=4 sts=4
-	au FileType javascript,python,htmldjango au BufWritePre <buffer> :%s/\s\+$//e
+	au FileType javascript,python,htmldjango,clojure au BufWritePre <buffer> :%s/\s\+$//e
 endif " has("audocmd")
 
 " Keyboard mappings
@@ -94,6 +96,7 @@ map <F7> <Esc>:setlocal spell spelllang=en_gb<CR>
 map <F8> <Esc>:setlocal nospell<CR>
 
 let mapleader=","
+let localleader="\\"
 nmap <silent><leader>l :set list!<CR>
 set listchars=tab:➜\ ,eol:¬
 
@@ -119,5 +122,11 @@ let b:javascript_fold=0
 " vim-python-combined
 let python_highlight_all=1
 let python_highlight_exceptions=0
+
+" VimClojure
+let g:vimclojure#HighlightBuiltins = 1
+let g:vimclojure#ParenRainbow = 1
+let vimclojure#WantNailgun = 1
+let vimclojure#SplitPos = "bottom"
 
 inoremap # X<BS>#

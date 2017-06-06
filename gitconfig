@@ -1,5 +1,5 @@
 [user]
-	email = brutasse@gmail.com
+	email = brutasse@users.noreply.github.com
 	name = Bruno Renié
 
 [github]
@@ -11,7 +11,7 @@
 	st = status -bs
 	di = diff
 	lol = log --graph --decorate --pretty=oneline --abbrev-commit
-	laundry = !sh -c 'git branch --merged master | /usr/bin/grep -Ev \"(master|prod)$\" | xargs git branch -d && git remote prune origin'
+	laundry = !sh -c 'git remote prune origin && git branch --merged master | /usr/bin/grep -Ev \"(master|prod)$\" | xargs git branch -d'
 
 [color]
 	ui = auto
@@ -38,3 +38,5 @@
 	default = current
 [credential]
 	helper = cache
+[rebase]
+	autosquash = true

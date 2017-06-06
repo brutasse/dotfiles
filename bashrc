@@ -34,6 +34,9 @@ export LESS_TERMCAP_so=$'\E[01;44;33m'
 export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
 
+# Moar history
+export HISTSIZE=999999
+
 # [user] [dir] $
 PS1=' \[\033[01;34m\][\[\033[01;33m\]\W\[\033[01;34m\]] \[\033[00;35m\]$(vcprompt)\[\033[01;33m\]$\[\033[00m\] '
 
@@ -105,6 +108,10 @@ function aur() {
 	git clone https://aur.archlinux.org/$1.git
 	cd $1
 	makepkg
+}
+
+function totp() {
+	oathtool -b $1 --totp
 }
 
 function pwcopy() {

@@ -20,7 +20,8 @@ alias json="python3 -m json.tool"
 alias docker-stopped="docker ps -a -q"
 alias docker-untagged="docker images -a | grep '^<none>' | tr -s ' ' | cut -d ' ' -f 3"
 alias docker-cleanup="docker-stopped | xargs docker rm && docker-untagged | xargs docker rmi"
-
+alias apple-keyboard-fix="echo 0 |sudo tee /sys/module/hid_apple/parameters/iso_layout"
+alias youtube-audio="youtube-dl -x --audio-format mp3"
 
 alias bytes="python -c 'import sys;print(\"\".join(list(map(lambda c: chr(int(c, 16)), sys.argv[1].split()))))'"
 

@@ -43,8 +43,9 @@
 *transparent: false
 *loginShell: true
 
-*font:xft:Inconsolata:pixelsize=30:autohint=1,xft:DejaVu Sans Mono
+URxvt.font:xft:Inconsolata-9:autohint=1,xft:DejaVu Sans Mono-9
 URxvt.letterSpace: 0
+URxvt.saveLines: 20000
 !URxvt.perl-lib: /home/brute/code/libs/urxvt-perls
 !URxvt.perl-ext-common: ...,clipboard
 
@@ -52,6 +53,6 @@ Xft.dpi:        240
 Xft.antialias:  true
 Xft.rgba:       rgb
 Xft.hinting:    true
-Xft.hintstyle:  hintfull
+Xft.hintstyle:  hintslight
 
 gnuplot*background: white
