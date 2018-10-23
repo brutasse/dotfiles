@@ -2,23 +2,13 @@
 """Adjust brightness.
 
 Usage:
-  brightness (keyboard|screen) (inc|dec)
+  brightness (inc|dec)
 """
 import operator
+import subprocess
 import sys
 
-
-DEVICES = {
-    'screen': {
-        'brightness': '/sys/class/backlight/intel_backlight/brightness',
-        'max': '/sys/class/backlight/intel_backlight/max_brightness',
-    },
-    'keyboard': {
-        'brightness': '/sys/class/leds/smc::kbd_backlight/brightness',
-        'max': '/sys/class/leds/smc::kbd_backlight/max_brightness',
-    },
-}
-
+CMD = ['pkexec', '/usr/lib/gnome-settings-daemon/gsd-backlight-helper']
 STEPS = 10
 
 
@@ -27,40 +17,25 @@ def die():
     sys.exit(1)
 
 
-def set_brightness(device, action):
-    paths = DEVICES[device]
-    with open(paths['max'], 'r') as f:
-        max_brightness = int(f.read())
+def int_cmd(opt):
+    return int(subprocess.check_output(CMD + [opt]).decode().strip())
 
-    increment = max_brightness // (STEPS - 1) + 1
-    steps = [min(i * increment, max_brightness) for i in range(STEPS)]
-    steps += [max_brightness]
 
-    with open(paths['brightness'], 'r') as f:
-        current = int(f.read())
-
-    if action == 'dec':
-        steps = steps[::-1]
-    op = operator.lt if action == 'inc' else operator.gt
-
-    for value in steps:
-        if op(current, value):
-            break
-
-    with open(paths['brightness'], 'w') as f:
-        f.write(str(value))
+def set_brightness(inc):
+    max_brightness = int_cmd('--get-max-brightness')
+    current = int_cmd('--get-brightness')
+    step = max_brightness // STEPS
+    next = (min(current + step, max_brightness) if inc
+            else max(current - step, 0))
+    subprocess.check_call(CMD + ['--set-brightness', str(next)])
 
 
 if __name__ == '__main__':
-    if len(sys.argv) != 3:
+    if len(sys.argv) != 2:
         die()
 
-    device = sys.argv[1]
-    if not device in ('keyboard', 'screen'):
+    action = sys.argv[1]
+    if action not in ('inc', 'dec'):
         die()
 
-    action = sys.argv[2]
-    if not action in ('inc', 'dec'):
-        die()
-
-    set_brightness(device, action)
+    set_brightness(action == 'inc')

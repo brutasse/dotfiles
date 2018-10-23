@@ -22,8 +22,8 @@
 "thunar"
  c:70
 
-"xbacklight -dec 10"
- c:232
+"brightness dec"
+ c:95
 
-"xbacklight -inc 10"
- c:233
+"brightness inc"
+ c:96
