@@ -51,6 +51,9 @@ if has("autocmd")
 	filetype plugin indent on		" enable file type detection
 	"let g:pydiction_location = '/usr/share/pydiction/complete-dict'
 
+	augroup ftdetect
+		au BufRead,BufNewFile Jenkinsfile set filetype=groovy
+	augroup END
 
 	autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 	
@@ -72,7 +75,7 @@ if has("autocmd")
 
 	" for both CSS and HTML, use genuine tab characters for indentation,
 	" to make files a few bytes smaller:
-	autocmd FileType html,xhtml,css,scss,xml,xsl,htmldjango setlocal et sw=4 ts=4 sts=4 textwidth=0
+	autocmd FileType groovy,html,xhtml,css,scss,xml,xsl,htmldjango setlocal et sw=4 ts=4 sts=4 textwidth=0
 	" Actually, no
 	"autocmd FileType html,xhtml,css,xml,xsl,htmldjango setlocal expandtab sw=2 ts=2 sts=2 textwidth=0
 
