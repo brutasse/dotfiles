@@ -45,7 +45,7 @@ yellow="\001\033[01;33m\002"
 clr="\001\033[00m\002"
 cyan="\001\033[00;35m\002"
 gray="\001\033[01;90m\002"
-_BASE_PS1=" $blue[$yellow\W$blue] $yellow$ ${clr}"
+_BASE_PS1=" \[$blue[\[$yellow\W\[$blue] \[$yellow$ \[${clr}"
 # [user] [dir] $
 PS1=$_BASE_PS1
 
@@ -58,16 +58,16 @@ function timer_stop {
   timer_show=$(($SECONDS - $timer))
   unset timer
   if [ "$timer_show" -gt 5 ]; then
-    export PS1=" $blue[${gray}took $red${timer_show}s$blue]$_BASE_PS1"
+    export PS1=" \[$blue[\[${gray}took \[$red${timer_show}s\[$blue]\[$_BASE_PS1"
   else
-    export PS1=$_BASE_PS1
+    export PS1="\[$_BASE_PS1"
   fi
-  vcp=$(vcprompt -f "%b%u%m")
+  vcp=$(gitprompt-rs)
   if [ -n "$vcp" ]; then
-    export PS1=" $blue[$cyan$vcp$blue]$PS1"
+    export PS1=" \[$cyan\[$vcp\[$PS1"
   fi
   if [ -n "$VIRTUAL_ENV" ]; then
-    export PS1=" $gray(`basename \"$VIRTUAL_ENV\"`)$PS1"
+    export PS1=" \[$gray(`basename \"$VIRTUAL_ENV\"`)\[$PS1"
   fi
 }
 
@@ -80,16 +80,16 @@ else
 fi
 
 
-test -n "$DISPLAY" && export TERM=xterm-color
-export TERM=rxvt-unicode
+test -n "$DISPLAY" && export TERM=xterm-kitty
 
 export OOO_FORCE_DESKTOP=gnome
 export EDITOR=/usr/bin/vim
 export TMPDIR=/tmp
 export WORKON_HOME=$HOME/.virtualenvs
+export GPG_TTY=$(tty)
 source /usr/bin/virtualenvwrapper.sh
 
-export PAGER=~/code/libs/mysqlpager/mypager.pl
+export PAGER="less -rF"
 
 has_virtualenv() {
 	if [ -e .venv ]; then
