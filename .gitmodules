@@ -1,0 +1,30 @@
+[submodule "vim/pack/ale/start/ale"]
+	path = vim/pack/ale/start/ale
+	url = git@github.com:dense-analysis/ale.git
+[submodule "vim/pack/ctrlpvim/start/ctrlp.vim"]
+	path = vim/pack/ctrlpvim/start/ctrlp.vim
+	url = git@github.com:ctrlpvim/ctrlp.vim.git
+[submodule "vim/pack/guns/start/vim-sexp"]
+	path = vim/pack/guns/start/vim-sexp
+	url = git@github.com:guns/vim-sexp.git
+[submodule "vim/pack/liquidz/start/vim-iced"]
+	path = vim/pack/liquidz/start/vim-iced
+	url = git@github.com:liquidz/vim-iced.git
+[submodule "vim/pack/luochen1990/start/rainbow"]
+	path = vim/pack/luochen1990/start/rainbow
+	url = git@github.com:luochen1990/rainbow.git
+[submodule "vim/pack/tpope/start/vim-repeat"]
+	path = vim/pack/tpope/start/vim-repeat
+	url = git@github.com:tpope/vim-repeat.git
+[submodule "vim/pack/tpope/start/vim-sexp-mappings-for-regular-people"]
+	path = vim/pack/tpope/start/vim-sexp-mappings-for-regular-people
+	url = git@github.com:tpope/vim-sexp-mappings-for-regular-people.git
+[submodule "vim/pack/tpope/start/vim-speeddating"]
+	path = vim/pack/tpope/start/vim-speeddating
+	url = git@github.com:tpope/vim-speeddating.git
+[submodule "vim/pack/tpope/start/vim-surround"]
+	path = vim/pack/tpope/start/vim-surround
+	url = git@github.com:tpope/vim-surround.git
+[submodule "vim/pack/vim-scripts/start/paredit.vim"]
+	path = vim/pack/vim-scripts/start/paredit.vim
+	url = git@github.com:vim-scripts/paredit.vim.git
