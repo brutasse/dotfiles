@@ -12,6 +12,7 @@ alias git=hub
 alias slf="evince http://www.slf.ch/avalanche/bulletin/fr/gk_c_fr_complete.pdf"
 alias mpdupdate="mpc -h brutasse@localhost --wait update"
 alias fig="docker-compose"
+alias diff="diff --color"
 
 alias mkpassword="tr -dc A-Za-z0-9_ < /dev/urandom | head -c 32 | xargs"
 alias fixperms="find . -type f -exec chmod 644 {} \; && find . -type d -exec chmod 755 {} \;"
@@ -24,11 +25,3 @@ alias apple-keyboard-fix="echo 0 |sudo tee /sys/module/hid_apple/parameters/iso_
 alias youtube-audio="youtube-dl -x --audio-format mp3"
 
 alias bytes="python -c 'import sys;print(\"\".join(list(map(lambda c: chr(int(c, 16)), sys.argv[1].split()))))'"
-
-pipsi-upgrade() {
-        for i in $(ls .local/venvs)
-        do
-                .local/venvs/$i/bin/pip install -U pip wheel
-                pipsi upgrade $i
-        done
-}

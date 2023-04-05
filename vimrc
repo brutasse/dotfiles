@@ -40,10 +40,18 @@ let base16colorspace=256  " Access colors present in 256 colorspace
 colorscheme fruity256
 "colorscheme base16-default
 
-execute pathogen#infect()
+call plug#begin('~/.vim/plugged')
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'guns/vim-sexp',    {'for': 'clojure'}
+Plug 'liquidz/vim-iced', {'for': 'clojure'}
+Plug 'tpope/vim-sexp-mappings-for-regular-people'
+call plug#end()
+let g:iced_enable_default_key_mappings = v:true
+
+"execute pathogen#infect()
 
 filetype off
-call pathogen#runtime_append_all_bundles()
+"call pathogen#runtime_append_all_bundles()
 syntax on           " syntax highlighing
 
 if has("autocmd")
@@ -83,11 +91,13 @@ if has("autocmd")
 	au BufRead,BufNewFile *.html set filetype=htmldjango " Who does HTML anyway
 	au BufRead,BufNewFile *.sls set filetype=yaml
 	au FileType yaml setlocal sw=2 ts=2 sts=2
+	au FileType groovy setlocal sw=2 ts=2 sts=2
 
 	au FileType text setlocal nonumber   " no line numbers when viewing text
 	au FileType text,rst,tex setlocal textwidth=78 
 	au FileType rst setlocal sw=4 ts=4 sts=4
 	au FileType javascript,python,htmldjango,clojure au BufWritePre <buffer> :%s/\s\+$//e
+	"autocmd BufWritePre *.py execute ':Black'
 endif " has("audocmd")
 
 " Keyboard mappings
@@ -129,7 +139,11 @@ let python_highlight_exceptions=0
 " VimClojure
 let g:vimclojure#HighlightBuiltins = 1
 let g:vimclojure#ParenRainbow = 1
-let vimclojure#WantNailgun = 1
+let vimclojure#WantNailgun = 0
 let vimclojure#SplitPos = "bottom"
+
+" Black
+let g:black_linelength = 79
+let g:black_virtualenv = "~/.local/pipx/venvs/black"
 
 inoremap # X<BS>#

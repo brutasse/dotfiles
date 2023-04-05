@@ -10,8 +10,6 @@
 	ci = commit
 	st = status -bs
 	di = diff
-	lol = log --graph --decorate --pretty=oneline --abbrev-commit
-	laundry = !sh -c 'git remote prune origin && git branch --merged master | /usr/bin/grep -Ev \"(master|prod)$\" | xargs git branch -d'
 
 [color]
 	ui = auto
@@ -34,9 +32,27 @@
 [branch "master"]
 	remote = origin
 	merge = refs/heads/master
-[push]
-	default = current
+[remote "origin"]
+	push = HEAD
 [credential]
-	helper = cache
+	helper = store
 [rebase]
 	autosquash = true
+[commit]
+	gpgsign = true
+[diff]
+	noprefix = true
+	colorMoved = default
+[pull]
+	rebase = false
+[init]
+	defaultBranch = main
+# when gh supports ssh key verification
+#[gpg]
+#	format = ssh
+#[gpg "ssh"]
+#	defaultKeyCommand = ssh-add -L
+#	allowedSignersFile = /home/brute/.ssh/allowed_signers
+[push]
+	autoSetupRemote = true
+	default = upstream

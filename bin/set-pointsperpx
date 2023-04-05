@@ -11,6 +11,9 @@ letterspace = {
 dpi_pattern = re.compile('Xft.dpi:        \d+')
 letterspace_pattern = re.compile('URxvt.letterSpace: -?\d+')
 
+base_kitty_dimensions = {"initial_window_width": 640,
+                         "initial_window_height": 440}
+
 
 if __name__ == '__main__':
     multiplicator = int(sys.argv[1])
@@ -27,8 +30,28 @@ if __name__ == '__main__':
     with open(xdefaults, 'w') as f:
         f.write(content)
 
+    kitty = os.path.expanduser('~/.config/kitty/kitty.conf')
+    with open(kitty, 'r') as f:
+        content = f.read()
+
+    for key, size in base_kitty_dimensions.items():
+        new_size = size * multiplicator
+        digit = r'\d+'
+        content = re.sub(f'{key} {digit}', f'{key} {new_size}', content)
+
+    with open(kitty, 'w') as f:
+        f.write(content)
+
     with open(os.path.expanduser('~/.config/chromium-flags.conf'), 'w') as f:
         f.write('--force-device-scale-factor={0}\n'.format(multiplicator))
+
+    ff_prefix = os.path.expanduser('~/.mozilla/firefox')
+    [moz_dir] = [d for d in os.listdir(ff_prefix)
+                 if d.endswith('.default')]
+    with open(os.path.join(ff_prefix, moz_dir, 'user.js'), 'w') as f:
+        f.write('user_pref("layout.css.devPixelsPerPx","{}");'.format(
+            multiplicator
+        ))
 
     #subprocess.check_call('xrandr --dpi {0}'.format(dpi), shell=True)
     subprocess.check_call('gsettings set org.gnome.desktop.interface '

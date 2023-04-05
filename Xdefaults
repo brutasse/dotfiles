@@ -43,13 +43,11 @@
 *transparent: false
 *loginShell: true
 
-URxvt.font:xft:Inconsolata-9:autohint=1,xft:DejaVu Sans Mono-9
-URxvt.letterSpace: 0
+URxvt.font:xft:jetbrains mono:regular:size=8
+URxvt.lineSpace: -2
 URxvt.saveLines: 20000
-!URxvt.perl-lib: /home/brute/code/libs/urxvt-perls
-!URxvt.perl-ext-common: ...,clipboard
 
-Xft.dpi:        240
+Xft.dpi:        120
 Xft.antialias:  true
 Xft.rgba:       rgb
 Xft.hinting:    true

@@ -7,16 +7,16 @@
 "sonata pp"
  c:172
 
-"amixer set Master 200+"
+"pamixer -i 2"
  c:123
 
-"amixer set Master 200-"
+"pamixer -d 2"
  c:122
 
-"amixer set Master toggle"
+"pamixer -t"
  c:121
 
-"urxvt"
+"kitty"
  c:69
 
 "thunar"

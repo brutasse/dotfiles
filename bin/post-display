@@ -1,6 +1,6 @@
 #! /usr/bin/env sh
-pkill conky
 pkill trayer
 trayer --edge bottom --align right --transparent true --alpha 255 --widthtype pixel --width 130 &
-conky
+cbatticon &
 feh --bg-fill ~/.wallpaper.jpg
+xset b off

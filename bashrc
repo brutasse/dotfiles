@@ -18,27 +18,67 @@ if [ -f ~/.bash_completion ]; then
 	. ~/.bash_completion
 fi
 
-# Colorized ls
+eval "$(register-python-argcomplete pipx)"
+
+# Colors
 alias ls='ls --color=auto'
 eval `dircolors -b`
-
-# Keep the color in less
-alias less='less -R'
+export LESS='-R --use-color'
+alias ip='ip -color=auto'
 
 # Colorized man
 export LESS_TERMCAP_mb=$'\E[01;31m'
 export LESS_TERMCAP_md=$'\E[01;31m'
 export LESS_TERMCAP_me=$'\E[0m'
-export LESS_TERMCAP_se=$'\E[0m'                           
-export LESS_TERMCAP_so=$'\E[01;44;33m'                                 
+export LESS_TERMCAP_se=$'\E[0m'
+export LESS_TERMCAP_so=$'\E[01;44;33m'
 export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
 
 # Moar history
 export HISTSIZE=999999
 
+gray="\001\033[01;90m\002"
+blue="\001\033[01;34m\002"
+red="\001\033[01;31m\002"
+yellow="\001\033[01;33m\002"
+clr="\001\033[00m\002"
+cyan="\001\033[00;35m\002"
+gray="\001\033[01;90m\002"
+_BASE_PS1=" $blue[$yellow\W$blue] $yellow$ ${clr}"
 # [user] [dir] $
-PS1=' \[\033[01;34m\][\[\033[01;33m\]\W\[\033[01;34m\]] \[\033[00;35m\]$(vcprompt)\[\033[01;33m\]$\[\033[00m\] '
+PS1=$_BASE_PS1
+
+
+function timer_start {
+  timer=${timer:-$SECONDS}
+}
+
+function timer_stop {
+  timer_show=$(($SECONDS - $timer))
+  unset timer
+  if [ "$timer_show" -gt 5 ]; then
+    export PS1=" $blue[${gray}took $red${timer_show}s$blue]$_BASE_PS1"
+  else
+    export PS1=$_BASE_PS1
+  fi
+  vcp=$(vcprompt -f "%b%u%m")
+  if [ -n "$vcp" ]; then
+    export PS1=" $blue[$cyan$vcp$blue]$PS1"
+  fi
+  if [ -n "$VIRTUAL_ENV" ]; then
+    export PS1=" $gray(`basename \"$VIRTUAL_ENV\"`)$PS1"
+  fi
+}
+
+trap 'timer_start' DEBUG
+
+if [ "$PROMPT_COMMAND" == "" ]; then
+  PROMPT_COMMAND="timer_stop"
+else
+  PROMPT_COMMAND="$PROMPT_COMMAND; timer_stop"
+fi
+
 
 test -n "$DISPLAY" && export TERM=xterm-color
 export TERM=rxvt-unicode
@@ -53,7 +93,7 @@ export PAGER=~/code/libs/mysqlpager/mypager.pl
 
 has_virtualenv() {
 	if [ -e .venv ]; then
-		workon `cat .venv`
+		workon `cat .venv` || mkvirtualenv `cat .venv`
 	fi
 }
 
@@ -80,7 +120,8 @@ fix_png() {
 	done
 }
 
-export PATH=~/.local/bin:~/.bin:$PATH
+export GOPATH="/home/brute/.go"
+export PATH=~/.local/bin:~/.bin:~/.vim/pack/liquidz/start/vim-iced/bin:~/.go/bin:$PATH
 export LD_LIBRARY_PATH=/usr/lib
 export PYTHONSTARTUP=~/.pythonrc
 export PYTHONDONTWRITEBYTECODE=1
@@ -111,12 +152,20 @@ function aur() {
 }
 
 function totp() {
-	oathtool -b $1 --totp
+	oathtool -b $1 --totp | xclip -selection c
 }
 
 function pwcopy() {
 	echo -n `pwgrep $* | awk '{print $nf}'` | xclip -selection clipboard
 }
+
+function qrtext() {
+	qrencode -o /tmp/qrcode.png $1 && \
+	open /tmp/qrcode.png && \
+	rm /tmp/qrcode.png
+}
+
+alias qrscanner="flatpak run vn.hoabinh.quan.CoBang"
 
 function strftime() {
 	echo
@@ -138,3 +187,23 @@ function strftime() {
 	echo "   %Z  Time zone name."
 	echo
 }
+
+export VIMCLOJURE_SERVER_JAR="$HOME/code/libs/vimclojure/nailgun-server-2.3.6.jar"
+
+# Silence 'Picked up _JAVA_OPTIONS' message on command-line
+SILENT_JAVA_OPTIONS="$_JAVA_OPTIONS"
+unset _JAVA_OPTIONS
+alias java='java "$_SILENT_JAVA_OPTIONS"'
+
+# WTF ansible
+export ANSIBLE_NOCOWS=1
+
+
+function firewall-my-location() {
+	exo compute security-group source add "bruno's locations" "`curl ifconfig.me`/32"
+}
+
+
+# BEGIN_KITTY_SHELL_INTEGRATION
+if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
+# END_KITTY_SHELL_INTEGRATION

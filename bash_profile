@@ -87,3 +87,4 @@ function svn
 		eval $(which svn) $CMD
 	fi
 }
+export GPG_TTY=$(tty)
