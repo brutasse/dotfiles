@@ -42,12 +42,12 @@ gray="\001\033[01;90m\002"
 blue="\001\033[01;34m\002"
 red="\001\033[01;31m\002"
 yellow="\001\033[01;33m\002"
-clr="\001\033[00m\002"
 cyan="\001\033[00;35m\002"
-gray="\001\033[01;90m\002"
-_BASE_PS1=" \[$blue[\[$yellow\W\[$blue] \[$yellow$ \[${clr}"
-# [user] [dir] $
-PS1=$_BASE_PS1
+clr="\001\033[00m\002"
+
+# [dir] $
+_BASE_PS1=" $blue[$yellow\W$blue] $yellow$ ${clr}"
+PS1="${_BASE_PS1}"
 
 
 function timer_start {
@@ -57,18 +57,18 @@ function timer_start {
 function timer_stop {
   timer_show=$(($SECONDS - $timer))
   unset timer
+
   if [ "$timer_show" -gt 5 ]; then
-    export PS1=" \[$blue[\[${gray}took \[$red${timer_show}s\[$blue]\[$_BASE_PS1"
+    timer_prefix=" $blue[${gray}took $red${timer_show}s$blue]${clr}"
   else
-    export PS1="\[$_BASE_PS1"
-  fi
-  vcp=$(gitprompt-rs)
-  if [ -n "$vcp" ]; then
-    export PS1=" \[$cyan\[$vcp\[$PS1"
+    timer_prefix=""
   fi
   if [ -n "$VIRTUAL_ENV" ]; then
-    export PS1=" \[$gray(`basename \"$VIRTUAL_ENV\"`)\[$PS1"
+    venv_prefix=" $gray(`basename \"$VIRTUAL_ENV\"`)${clr}"
+  else
+    venv_prefix=""
   fi
+  export PS1="$(gitprompt-rs bash)${timer_prefix}${venv_prefix}${_BASE_PS1}"
 }
 
 trap 'timer_start' DEBUG
@@ -123,7 +123,6 @@ fix_png() {
 export GOPATH="/home/brute/.go"
 export PATH=~/.local/bin:~/.bin:~/.vim/pack/liquidz/start/vim-iced/bin:~/.go/bin:$PATH
 export LD_LIBRARY_PATH=/usr/lib
-export PYTHONSTARTUP=~/.pythonrc
 export PYTHONDONTWRITEBYTECODE=1
 
 function pwgrep() {

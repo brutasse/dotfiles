@@ -1,2 +1,3 @@
 #! /bin/sh
 kanshi &
+dropbox &
