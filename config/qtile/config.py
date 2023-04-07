@@ -2,6 +2,8 @@ import os
 import subprocess
 from pathlib import Path
 
+from dbusbattery import DBusBatteryIcon
+
 from libqtile import bar, hook, layout, widget
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
@@ -109,38 +111,46 @@ widget_defaults = dict(
 )
 extension_defaults = widget_defaults.copy()
 
+background = "ffffff"
+foreground = "000000"
+
 screens = [
     Screen(
         wallpaper=Path.home() / "Dropbox" / "wallpaper.jpg",
         wallpaper_mode="fill",
         bottom=bar.Bar(
             [
-                widget.CurrentLayout(),
+                widget.CurrentLayout(foreground=foreground),
                 widget.GroupBox(
-                    highlight_method="block", hide_unused=True, rounded=False
+                    highlight_method="block",
+                    hide_unused=True,
+                    rounded=False,
+                    this_current_screen_border=foreground,  # current, background
+                    block_highlight_text_color=background,  # current, text
+                    background="aaaaaa",  # non-current, background
+                    active=foreground,  # non-current, text
+                    margin_x=0,
+                    this_screen_border="ff0000",  # useless in block
+                    other_current_screen_border="ff0000",  # useless in block
+                    other_screen_border="ff0000",  # useless in block
                 ),
-                widget.Prompt(),
-                widget.WindowName(),
-                widget.Chord(
-                    chords_colors={
-                        "launch": ("#ff0000", "#ffffff"),
-                    },
-                    name_transform=lambda name: name.upper(),
-                ),
+                widget.Prompt(foreground=foreground),
+                widget.WindowName(foreground=foreground),
                 # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
                 # widget.StatusNotifier(),
                 widget.StatusNotifier(),
-                # widget.Battery(
-                #    format="{char} {percent:2.0%} {hour:d}:{min:02d}",
-                #    charge_char="^",
-                #    discharge_char="V",
-                # ),
-                widget.BatteryIcon(),
-                widget.Clock(format="%Y-%m-%d %H:%M"),
+                DBusBatteryIcon(background=background),
+                widget.Clock(format="%Y-%m-%d %H:%M", foreground=foreground),
             ],
             24,
-            # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
-            # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
+            border_width=[2, 0, 2, 0],  # top left? bottom right?
+            border_color=[
+                "ffffff",
+                "000000",
+                "ffffff",
+                "000000",
+            ],
+            background=background,
         ),
     ),
 ]
