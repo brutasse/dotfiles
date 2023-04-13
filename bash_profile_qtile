@@ -6,6 +6,7 @@
 
 if [[ -z "$DISPLAY" ]] && [[ $(tty) = "/dev/tty1" ]]; then
 	eval `ssh-agent`
+	export MOZ_ENABLE_WAYLAND=1
 	qtile start -b wayland
 	logout
 fi
