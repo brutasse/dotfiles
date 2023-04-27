@@ -12,10 +12,8 @@ alias git=hub
 alias slf="evince http://www.slf.ch/avalanche/bulletin/fr/gk_c_fr_complete.pdf"
 alias mpdupdate="mpc -h brutasse@localhost --wait update"
 alias fig="docker-compose"
-alias diff="diff --color"
 
 alias mkpassword="tr -dc A-Za-z0-9_ < /dev/urandom | head -c 32 | xargs"
-alias fixperms="find . -type f -exec chmod 644 {} \; && find . -type d -exec chmod 755 {} \;"
 alias json="python3 -m json.tool"
 
 alias docker-stopped="docker ps -a -q"

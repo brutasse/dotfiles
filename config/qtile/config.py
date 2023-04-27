@@ -60,6 +60,13 @@ keys = [
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
+    Key([mod], "n", lazy.next_screen(), desc="Next monitor"),
+    Key(
+        [mod],
+        "a",
+        lazy.widget["keyboardlayout"].next_keyboard(),
+        desc="Next keyboard",
+    ),
 ]
 
 groups = [Group(i) for i in "1234"]
@@ -106,7 +113,7 @@ layouts = [
 
 widget_defaults = dict(
     font="jetbrains mono",
-    fontsize=15,
+    fontsize=16,
     padding=3,
 )
 extension_defaults = widget_defaults.copy()
@@ -140,6 +147,12 @@ screens = [
                 # widget.StatusNotifier(),
                 widget.StatusNotifier(),
                 DBusBatteryIcon(background=background),
+                widget.KeyboardLayout(
+                    background=background,
+                    foreground=foreground,
+                    configured_keyboards=["us", "ch fr_mac"],
+                    display_map={"us": "us", "ch fr_mac": "ch"},
+                ),
                 widget.Clock(format="%Y-%m-%d %H:%M", foreground=foreground),
             ],
             24,
@@ -151,7 +164,12 @@ screens = [
                 "000000",
             ],
             background=background,
+            scale=2,
         ),
+    ),
+    Screen(
+        wallpaper=Path.home() / "Dropbox" / "wallpaper.jpg",
+        wallpaper_mode="fill",
     ),
 ]
 
@@ -173,7 +191,7 @@ dgroups_key_binder = None
 dgroups_app_rules = []  # type: list
 follow_mouse_focus = True
 bring_front_click = False
-cursor_warp = False
+cursor_warp = True
 floating_layout = layout.Floating(
     float_rules=[
         # Run the utility of `xprop` to see the wm class and name of an X client.

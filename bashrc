@@ -6,8 +6,8 @@ if [ -z "$INPUTRC" -a ! -f "$HOME/.inputrc" ]; then
 	INPUTRC=/etc/inputrc
 fi
 
-if [ -f /etc/bash_completion ]; then
-	. /etc/bash_completion
+if [ -f /usr/share/bash_completion ]; then
+	. /usr/share/bash_completion
 fi
 
 if [ -f ~/.bash_aliases ]; then
@@ -25,6 +25,7 @@ alias ls='ls --color=auto'
 eval `dircolors -b`
 export LESS='-R --use-color'
 alias ip='ip -color=auto'
+alias diff="diff --color"
 
 # Colorized man
 export LESS_TERMCAP_mb=$'\E[01;31m'
