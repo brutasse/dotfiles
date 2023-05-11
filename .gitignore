@@ -49,7 +49,5 @@ mpd/mpd.db
 mpd/mpd.log
 mpd/mpd.pid
 mpd/sticker.sql
-vim/bundle
-vim/colors
 vim/.netrwhist
 vim/swap

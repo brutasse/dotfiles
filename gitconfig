@@ -56,3 +56,5 @@
 [push]
 	autoSetupRemote = true
 	default = upstream
+[url "git@github.com:"]
+	insteadOf = https://github.com/
