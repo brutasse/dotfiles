@@ -140,7 +140,7 @@ function pwedit() {
 	gpg -q -d --batch -r bruno@renie.fr $HOME/.pwdb.asc > $file && \
 	$EDITOR $file && \
 	gpg -q --batch -a -e -r bruno@renie.fr $file && \
-	mv ${file}.asc $HOME/.pwdb.asc
+	mv ${file}.asc $(readlink -f $HOME/.pwdb.asc)
 	rm -f $file ${file}.asc
 }
 
