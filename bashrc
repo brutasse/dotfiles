@@ -152,7 +152,7 @@ function aur() {
 }
 
 function totp() {
-	oathtool -b $1 --totp | xclip -selection c
+	oathtool -b $1 --totp | wl-copy
 }
 
 function pwcopy() {

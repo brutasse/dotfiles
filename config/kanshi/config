@@ -1,8 +1,8 @@
-profile {
+profile laptop {
 	output eDP-1 enable scale 2
 }
 
-profile {
-	output DP-5 mode 2560x1440 enable scale 1
-	output eDP-1 enable scale 2
+profile dell27 {
+	output DP-5 enable mode 2560x1440 scale 1
+	output eDP-1 enable position 5120,0 scale 2
 }
