@@ -7,6 +7,7 @@ from dbusbattery import DBusBatteryIcon
 from libqtile import bar, hook, layout, widget
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
+from libqtile.log_utils import logger
 from libqtile.utils import guess_terminal
 
 mod = "mod4"
@@ -20,11 +21,19 @@ keys = [
     Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
     Key([mod], "j", lazy.layout.down(), desc="Move focus down"),
     Key([mod], "k", lazy.layout.up(), desc="Move focus up"),
-    Key([mod], "space", lazy.layout.next(), desc="Move window focus to other window"),
+    Key(
+        [mod],
+        "space",
+        lazy.layout.next(),
+        desc="Move window focus to other window",
+    ),
     # Move windows between left/right columns or move up/down in current stack.
     # Moving out of range in Columns layout will create new column.
     Key(
-        [mod, "shift"], "h", lazy.layout.shuffle_left(), desc="Move window to the left"
+        [mod, "shift"],
+        "h",
+        lazy.layout.shuffle_left(),
+        desc="Move window to the left",
     ),
     Key(
         [mod, "shift"],
@@ -32,17 +41,36 @@ keys = [
         lazy.layout.shuffle_right(),
         desc="Move window to the right",
     ),
-    Key([mod, "shift"], "j", lazy.layout.shuffle_down(), desc="Move window down"),
+    Key(
+        [mod, "shift"],
+        "j",
+        lazy.layout.shuffle_down(),
+        desc="Move window down",
+    ),
     Key([mod, "shift"], "k", lazy.layout.shuffle_up(), desc="Move window up"),
     # Grow windows. If current window is on the edge of screen and direction
     # will be to screen edge - window would shrink.
-    Key([mod, "control"], "h", lazy.layout.grow_left(), desc="Grow window to the left"),
     Key(
-        [mod, "control"], "l", lazy.layout.grow_right(), desc="Grow window to the right"
+        [mod, "control"],
+        "h",
+        lazy.layout.grow_left(),
+        desc="Grow window to the left",
     ),
-    Key([mod, "control"], "j", lazy.layout.grow_down(), desc="Grow window down"),
+    Key(
+        [mod, "control"],
+        "l",
+        lazy.layout.grow_right(),
+        desc="Grow window to the right",
+    ),
+    Key(
+        [mod, "control"],
+        "j",
+        lazy.layout.grow_down(),
+        desc="Grow window down",
+    ),
     Key([mod, "control"], "k", lazy.layout.grow_up(), desc="Grow window up"),
-    Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
+    Key([mod], "z", lazy.layout.normalize(), desc="Reset all window sizes"),
+    Key([mod], "f", lazy.window.toggle_floating(), desc="Toggle floating"),
     # Toggle between split and unsplit sides of stack.
     # Split = all windows displayed
     # Unsplit = 1 window displayed, like Max layout, but still with
@@ -59,7 +87,12 @@ keys = [
     Key([mod], "w", lazy.window.kill(), desc="Kill focused window"),
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
-    Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
+    Key(
+        [mod],
+        "r",
+        lazy.spawncmd(),
+        desc="Spawn a command using a prompt widget",
+    ),
     Key([mod], "n", lazy.next_screen(), desc="Next monitor"),
     Key(
         [mod],
@@ -81,12 +114,15 @@ for i in groups:
                 lazy.group[i.name].toscreen(),
                 desc="Switch to group {}".format(i.name),
             ),
-            # mod1 + shift + letter of group = switch to & move focused window to group
+            # mod1 + shift + letter of group = switch to & move focused
+            # window to group.
             Key(
                 [mod, "shift"],
                 i.name,
                 lazy.window.togroup(i.name, switch_group=True),
-                desc="Switch to & move focused window to group {}".format(i.name),
+                desc="Switch to & move focused window to group {}".format(
+                    i.name,
+                ),
             ),
             # Or, use below if you prefer not to switch to that group.
             # # mod1 + shift + letter of group = move focused window to group
@@ -121,6 +157,12 @@ extension_defaults = widget_defaults.copy()
 background = "ffffff"
 foreground = "000000"
 
+
+def debug_parse_text(text):
+    logger.warn(f"parse_text {text!r}")
+    return text
+
+
 screens = [
     Screen(
         wallpaper=Path.home() / "Dropbox" / "wallpaper.jpg",
@@ -132,26 +174,34 @@ screens = [
                     highlight_method="block",
                     hide_unused=True,
                     rounded=False,
-                    this_current_screen_border=foreground,  # current, background
+                    this_current_screen_border=foreground,  # current, bg
                     block_highlight_text_color=background,  # current, text
                     background="aaaaaa",  # non-current, background
                     active=foreground,  # non-current, text
-                    margin_x=0,
-                    this_screen_border="ff0000",  # useless in block
+                    margin_x=2,
+                    this_screen_border="00ff00",  # useless in block
                     other_current_screen_border="ff0000",  # useless in block
-                    other_screen_border="ff0000",  # useless in block
+                    other_screen_border="0000ff",  # useless in block
                 ),
-                widget.Prompt(foreground=foreground),
-                widget.WindowName(foreground=foreground),
-                # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
-                # widget.StatusNotifier(),
+                widget.Sep(background=background, linewidth=0),
+                widget.Prompt(
+                    foreground=background,
+                    background=foreground,
+                    bell_style="visual",
+                ),
+                widget.WindowName(
+                    foreground=foreground,
+                    format="{state}{name}",
+                    # format="{state}|{name}|{class}",
+                    # parse_text=debug_parse_text,
+                ),
                 widget.StatusNotifier(),
                 DBusBatteryIcon(background=background),
                 widget.KeyboardLayout(
                     background=background,
                     foreground=foreground,
                     configured_keyboards=["us", "ch fr_mac"],
-                    display_map={"us": "us", "ch fr_mac": "ch"},
+                    display_map={"us": "US", "ch fr_mac": "CH"},
                 ),
                 widget.Clock(format="%Y-%m-%d %H:%M", foreground=foreground),
             ],
@@ -164,7 +214,6 @@ screens = [
                 "000000",
             ],
             background=background,
-            scale=2,
         ),
     ),
     Screen(
@@ -182,7 +231,10 @@ mouse = [
         start=lazy.window.get_position(),
     ),
     Drag(
-        [mod], "Button3", lazy.window.set_size_floating(), start=lazy.window.get_size()
+        [mod],
+        "Button3",
+        lazy.window.set_size_floating(),
+        start=lazy.window.get_size(),
     ),
     Click([mod], "Button2", lazy.window.bring_to_front()),
 ]
@@ -192,9 +244,24 @@ dgroups_app_rules = []  # type: list
 follow_mouse_focus = True
 bring_front_click = False
 cursor_warp = True
+
+
+def debug_window(window):
+    logger.warn(f"window match {window.name!r} {window.get_wm_class()!r}")
+    return False
+
+
+def exact_match(strings):
+    def match(window):
+        return window.name in strings
+
+    return match
+
+
 floating_layout = layout.Floating(
     float_rules=[
-        # Run the utility of `xprop` to see the wm class and name of an X client.
+        # Run the utility of `xprop` to see the wm class and name of an X
+        # client.
         *layout.Floating.default_float_rules,
         Match(wm_class="confirmreset"),  # gitk
         Match(wm_class="makebranch"),  # gitk
@@ -202,7 +269,15 @@ floating_layout = layout.Floating(
         Match(wm_class="ssh-askpass"),  # ssh-askpass
         Match(title="branchdialog"),  # gitk
         Match(title="pinentry"),  # GPG key password entry
-        Match(title="ksnip"),
+        # Match(func=debug_window),
+        Match(
+            func=exact_match(
+                {
+                    "Password Required - Mozilla Firefox",
+                    "Firefox — Sharing Indicator",
+                }
+            )
+        ),
     ]
 )
 auto_fullscreen = True
