@@ -7,6 +7,8 @@
 if [[ -z "$DISPLAY" ]] && [[ $(tty) = "/dev/tty1" ]]; then
 	eval `ssh-agent`
 	export MOZ_ENABLE_WAYLAND=1
+	export GTK2_RC_FILES=/usr/share/themes/Arc-Lighter-solid/gtk-2.0/gtkrc
+	export GTK_THEME=Arc-Lighter-solid
 	qtile start -b wayland
 	logout
 fi
