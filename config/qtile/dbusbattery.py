@@ -16,7 +16,7 @@ def dbus_battery_icon(theme="Adwaita", size=32):
     proxy = bus.get_object(UPOWER, PATH)
     interface = dbus.Interface(proxy, UPOWER)
     for device in interface.EnumerateDevices():
-        logger.warn(f"found device {device}")
+        logger.debug(f"found device {device}")
         if "/battery" in device:
             bat_proxy = bus.get_object(UPOWER, device)
             bat_interface = dbus.Interface(
@@ -27,10 +27,10 @@ def dbus_battery_icon(theme="Adwaita", size=32):
                 "org.freedesktop.UPower.Device",
                 "IconName",
             )
-            logger.warn(f"found icon {icon}")
+            logger.debug(f"found icon {icon}")
             break
     else:
-        logger.warn("icon fallback")
+        logger.debug("icon fallback")
         icon = "battery-missing-symbolic"
     return IconTheme.getIconPath(
         icon + ".symbolic", theme=theme, size=size, extensions=["png"]
