@@ -179,9 +179,10 @@ screens = [
                     background="aaaaaa",  # non-current, background
                     active=foreground,  # non-current, text
                     margin_x=2,
-                    this_screen_border="00ff00",  # useless in block
-                    other_current_screen_border="ff0000",  # useless in block
-                    other_screen_border="0000ff",  # useless in block
+                    this_screen_border="aaaaaa",  # side screen, non-current
+                    # side screen, current
+                    other_current_screen_border=foreground,
+                    other_screen_border="aaaaaa",  # side screen, non-current
                 ),
                 widget.Sep(background=background, linewidth=0),
                 widget.Prompt(
