@@ -123,7 +123,6 @@ fix_png() {
 
 export GOPATH="/home/brute/.go"
 export PATH=~/.local/bin:~/.bin:~/.vim/pack/liquidz/start/vim-iced/bin:~/.go/bin:$PATH
-export LD_LIBRARY_PATH=/usr/lib
 export PYTHONDONTWRITEBYTECODE=1
 
 function pwgrep() {
