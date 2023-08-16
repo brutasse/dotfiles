@@ -16,6 +16,7 @@ alias fig="docker-compose"
 alias mkpassword="tr -dc A-Za-z0-9_ < /dev/urandom | head -c 32 | xargs"
 alias json="python3 -m json.tool"
 alias ssh="TERM=xterm ssh"
+alias sos="aws --profile exo --endpoint-url https://sos-ch-dk-2.exo.io s3"
 
 alias docker-stopped="docker ps -a -q"
 alias docker-untagged="docker images -a | grep '^<none>' | tr -s ' ' | cut -d ' ' -f 3"
