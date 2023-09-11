@@ -1,0 +1,61 @@
+* {
+    font-size: 16px;
+    border: none;
+    border-radius: 0;
+    font-family: FontAwesome, "JetBrains Mono";
+}
+
+#waybar {
+    background: #ffffff;
+    color: #000000
+}
+
+#workspaces button {
+    background: #aaaaaa;
+    border: none;
+    color: #000000;
+    padding: 0 5px;
+}
+
+#workspaces button.active {
+    background: #000000;
+    color: #ffffff;
+}
+
+#workspaces button.urgent {
+    background: #f00000;
+    color: #ffffff;
+}
+
+#clock,
+#battery,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#backlight,
+#network,
+#pulseaudio,
+#wireplumber,
+#custom-media,
+#tray,
+#mode,
+#idle_inhibitor,
+#scratchpad,
+#upower,
+#mpd {
+    padding: 0 10px;
+}
+
+#tray {
+    padding-right: 0;
+}
+#upower {
+    padding-left: 5px;
+    padding-right: 0;
+}
+#idle_inhibitor {
+    padding-left: 3px;
+    font-size: 13px;
+    color: #888888;
+}

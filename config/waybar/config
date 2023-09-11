@@ -1,0 +1,37 @@
+{
+    "position": "bottom",
+    "height": 30,
+    "spacing": 4, // Gaps between modules (4px)
+    "modules-left": ["hyprland/workspaces", "hyprland/window"],
+    "modules-center": [],
+    "modules-right": ["wireplumber", "backlight", "clock", "tray", "upower", "idle_inhibitor"],
+    "wireplumber": {
+        "format": "{icon} {volume}%",
+	"on-click": "pavucontrol",
+	"format-icons": ["🔈", "🔉", "🔊"],
+    },
+    "backlight": {
+        "format": "{icon} {percent}%",
+        "format-icons": ["🌘", "🌗", "🌖", "🌕"],
+    },
+    "clock": {
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+	"format": "{:%Y-%m-%d %H:%M}",
+	"format-alt": "{:%Y-%m-%d %H:%M}",
+    },
+    "tray": {
+        "spacing": 10,
+    },
+    "upower": {
+        "format": "",
+	"icon-size": 16,
+        "format-alt": "{percentage}",
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": "",
+        },
+    },
+}
