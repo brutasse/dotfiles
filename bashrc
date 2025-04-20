@@ -18,6 +18,8 @@ if [ -f ~/.bash_completion ]; then
 	. ~/.bash_completion
 fi
 
+. "$HOME/.cargo/env"
+
 eval "$(register-python-argcomplete pipx)"
 
 # Colors
@@ -89,14 +91,9 @@ export TMPDIR=/tmp
 export WORKON_HOME=$HOME/.virtualenvs
 export GPG_TTY=$(tty)
 source /usr/bin/virtualenvwrapper.sh
+source "$HOME/.rye/env"
 
 export PAGER="less -rF"
-
-has_virtualenv() {
-	if [ -e .venv ]; then
-		workon `cat .venv` || mkvirtualenv `cat .venv`
-	fi
-}
 
 has_node_modules() {
 	if [ -d node_modules/.bin ]; then
@@ -111,7 +108,7 @@ has_node_modules() {
 }
 
 venv_cd() {
-	\cd "$@" && has_virtualenv && has_node_modules
+	\cd "$@" && has_node_modules
 }
 alias cd="venv_cd"
 
@@ -160,7 +157,7 @@ function pwcopy() {
 
 function qrtext() {
 	qrencode -o /tmp/qrcode.png $1 && \
-	open /tmp/qrcode.png && \
+	viewnior /tmp/qrcode.png && \
 	rm /tmp/qrcode.png
 }
 
@@ -199,7 +196,7 @@ export ANSIBLE_NOCOWS=1
 
 
 function firewall-my-location() {
-	exo compute security-group source add "bruno's locations" "`curl ifconfig.me`/32"
+	exo compute security-group source add "bruno's locations" "`curl https://ifconfig.me`/32"
 }
 
 

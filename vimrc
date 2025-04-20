@@ -29,6 +29,7 @@ set listchars=tab:➜\ ,eol:¬	" list
 let g:rainbow_active = 1	" rainbow parentheses
 let g:rainbow_conf = {'ctermfgs': ['blue', 'yellow', 'cyan', 'brown', 'magenta']}
 let g:markdown_fenced_languages = ['html', 'python', 'bash=sh']
+let g:astro_typescript = 'enable'
 
 ab bl <Esc>bi{% block <Esc>ea %}{% endblock %}<Esc>h%i
 
@@ -53,7 +54,7 @@ if has("autocmd")
 		au BufRead,BufNewFile *.html set filetype=htmldjango
 		au BufRead,BufNewFile *.sls set filetype=yaml
 		au BufRead,BufNewFile *.tf,*.tfvars set filetype=terraform
-		au FileType javascript setlocal ts=4 sw=4 sts=4 et textwidth=0 smartindent
+		au FileType javascript,astro setlocal ts=2 sw=2 sts=2 et textwidth=0 smartindent
 		au FileType groovy,html,xhtml,css,scss,xml,xsl,htmldjango setlocal et sw=4 ts=4 sts=4 textwidth=0
 		au FileType helpfile,text setlocal nonumber
 		au FileType yaml setlocal sw=2 ts=2 sts=2

@@ -9,7 +9,9 @@ if [[ -z "$DISPLAY" ]] && [[ $(tty) = "/dev/tty1" ]]; then
 	export MOZ_ENABLE_WAYLAND=1
 	export GTK2_RC_FILES=/usr/share/themes/Arc-Lighter-solid/gtk-2.0/gtkrc
 	export GTK_THEME=Arc-Lighter-solid
-	export XDG_CURRENT_DESKTOP=wlroots
+	export XDG_CURRENT_DESKTOP=Hyprland
 	Hyprland
 	logout
 fi
+
+. "$HOME/.cargo/env"

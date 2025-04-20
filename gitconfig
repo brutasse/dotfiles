@@ -54,7 +54,14 @@
 #	defaultKeyCommand = ssh-add -L
 #	allowedSignersFile = /home/brute/.ssh/allowed_signers
 [push]
-	autoSetupRemote = true
 	default = upstream
+	autoSetupRemote = true
 [url "git@github.com:"]
 	insteadOf = https://github.com/
+[protocol "file"]
+	allow = always
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

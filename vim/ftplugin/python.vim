@@ -2,7 +2,8 @@
 let g:black_linelength = 79
 let g:black_virtualenv = "~/.local/pipx/venvs/black"
 
-let g:ale_fixers = {'python': ['black']}
+let g:ale_linters = {'python': ["ruff"]}
+let g:ale_fixers = {'python': ["ruff", "ruff_format"]}
 
 aug MyPythonSetting
   au!
