@@ -91,7 +91,6 @@ export TMPDIR=/tmp
 export WORKON_HOME=$HOME/.virtualenvs
 export GPG_TTY=$(tty)
 source /usr/bin/virtualenvwrapper.sh
-source "$HOME/.rye/env"
 
 export PAGER="less -rF"
 
@@ -193,11 +192,6 @@ alias java='java "$_SILENT_JAVA_OPTIONS"'
 
 # WTF ansible
 export ANSIBLE_NOCOWS=1
-
-
-function firewall-my-location() {
-	exo compute security-group source add "bruno's locations" "`curl https://ifconfig.me`/32"
-}
 
 
 # BEGIN_KITTY_SHELL_INTEGRATION

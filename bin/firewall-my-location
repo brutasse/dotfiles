@@ -1,0 +1,41 @@
+#!/usr/bin/env -S uv run --script
+# /// script
+# requires-python = ">=3.13"
+# dependencies = [
+#     "exoscale>=0.11",
+#     "httpx",
+# ]
+# ///
+
+import httpx
+import json
+import sys
+import tomllib
+from exoscale.api.v2 import Client
+from pathlib import Path
+
+def firewall_my_location():
+    response = httpx.get("https://ipv4.lookup.test-ipv6.com/ip/?callback=_jqjsp&asn=1&testdomain=test-ipv6.com&testname=test_asn4")
+    response.raise_for_status()
+
+    data = response.text.split("(", 1)[1].split(")")[0]
+    ip = json.loads(data)["ip"]
+
+    path = Path.home() / ".exoscale" / "exoscale.toml"
+    with open(path, "rb") as f:
+        config = tomllib.load(f)
+    [account] = [a for a in config["accounts"] if a ["name"] == config["defaultaccount"]]
+    
+    client = Client(account["key"], account["secret"])
+    [group] = [g for g in client.list_security_groups()["security-groups"] if g["name"] == "bruno's locations"]
+    op = client.add_external_source_to_security_group(id=group["id"], cidr=f"{ip}/32")
+    result = client.wait(op["id"])
+    if result["state"] != "success":
+        print("ERR:", result, file=sys.stderr)
+        sys.exit(1)
+
+
+if __name__ == '__main__':
+    firewall_my_location()
+
+# vim: ft=python
