@@ -10,6 +10,7 @@
 	ci = commit
 	st = status -bs
 	di = diff
+	whatchanged = log --raw --no-merges
 
 [color]
 	ui = auto
@@ -29,11 +30,6 @@
 [core]
 	excludesfile = ~/.gitignore
 
-[branch "master"]
-	remote = origin
-	merge = refs/heads/master
-[remote "origin"]
-	push = HEAD
 [credential]
 	helper = store
 [rebase]
@@ -54,7 +50,7 @@
 #	defaultKeyCommand = ssh-add -L
 #	allowedSignersFile = /home/brute/.ssh/allowed_signers
 [push]
-	default = upstream
+	default = simple
 	autoSetupRemote = true
 [url "git@github.com:"]
 	insteadOf = https://github.com/
