@@ -64,3 +64,7 @@ Strong success criteria let you loop independently. Weak criteria ("make it work
 
 Don't commit to git. Don't apply Kubernetes manifests. Only run things through
 tests, never direct execution.
+
+6. Cut the jargon
+
+Write for humans. Be concise.
