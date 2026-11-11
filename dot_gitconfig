@@ -61,3 +61,6 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[safe]
+	directory = /home/brute/code/exoscale/scoping-analysis/entities
+	directory = *

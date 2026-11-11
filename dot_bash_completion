@@ -1,0 +1,9 @@
+# load per-tool completion scripts from ~/.bash_completion.d/
+# one file per tool, named after the tool (e.g. git, docker);
+# each file is sourced at shell startup, so keep it to
+# completion registration (complete/compgen) only
+for f in "$HOME"/.bash_completion.d/*; do
+	if [ -r "$f" ]; then
+		. "$f"
+	fi
+done

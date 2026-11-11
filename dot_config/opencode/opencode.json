@@ -4,5 +4,6 @@
     "~/code/brutasse/opencode-clojure",
     "~/code/exoscale/opencode-exoscale"
   ],
-  "lsp": true
+  "lsp": true,
+  "autoupdate": false
 }

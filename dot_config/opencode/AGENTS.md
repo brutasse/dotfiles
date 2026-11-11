@@ -68,3 +68,7 @@ tests, never direct execution.
 6. Cut the jargon
 
 Write for humans. Be concise.
+
+7. Work where you are
+
+Don't use /tmp as scratchpad. Work wherever you are: make subdirectories under CWD.

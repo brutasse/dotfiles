@@ -15,6 +15,7 @@
 ------------------
 
 -- See https://wiki.hypr.land/Configuring/Basics/Monitors/
+{{- if eq .chezmoi.hostname "sheraf" }}
 hl.monitor({
     output   = "eDP-1",
     mode     = "preferred",
@@ -47,6 +48,7 @@ hl.monitor({
     mode="preferred",
     position="auto"
 })
+{{- end }}
 
 
 ---------------------
@@ -70,7 +72,6 @@ hl.on("hyprland.start", function ()
   hl.exec_cmd("hyprpaper")
   hl.exec_cmd("waybar")
   hl.exec_cmd("mako")
-  hl.exec_cmd("dropbox")
   hl.exec_cmd("nm-applet")
   hl.exec_cmd("hyprshade auto")
 end)
@@ -243,8 +244,10 @@ hl.config({
 
 hl.config({
     input = {
+        {{- if eq .chezmoi.hostname "sheraf" }}
         kb_layout  = "us,ch",
         kb_variant = ",fr_mac",
+        {{- end }}
         kb_model   = "",
         kb_options = "grp:alt_shift_toggle",
         kb_rules   = "",

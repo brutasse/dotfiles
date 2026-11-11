@@ -1,0 +1,87 @@
+#!/usr/bin/env python3
+"""List open OpenCode tabs per cwd, joined with the session DB.
+
+    opencode-tabs                  list open tabs
+    opencode-tabs close SES_ID     remove a session from open tabs
+
+Read-only in list mode. close mode only edits
+~/.local/state/opencode/latest/tui/tabs.json; the session itself stays
+in the DB. Note: a TUI open in the same directory keeps tabs in memory
+and rewrites tabs.json on exit, so it may re-add the closed entry.
+"""
+import argparse
+import json
+import os
+import sqlite3
+import sys
+
+state = os.environ.get("XDG_STATE_HOME", os.path.expanduser("~/.local/state"))
+data = os.environ.get("XDG_DATA_HOME", os.path.expanduser("~/.local/share"))
+tabs_file = os.path.join(state, "opencode", "latest", "tui", "tabs.json")
+db_file = os.path.join(data, "opencode", "opencode.db")
+
+
+def load_tabs():
+    try:
+        with open(tabs_file) as f:
+            return json.load(f)
+    except FileNotFoundError:
+        sys.exit(f"not found: {tabs_file}")
+
+
+def list_tabs():
+    tabs = load_tabs()
+    db = sqlite3.connect(f"file:{db_file}?mode=ro", uri=True)
+    for cwd, v in sorted(tabs["cwd"].items(), key=lambda kv: -len(kv[1]["tabs"])):
+        if not v["tabs"]:
+            continue
+        print(f"\n{cwd} ({len(v['tabs'])})")
+        for t in v["tabs"]:
+            sid = t["sessionID"]
+            row = db.execute(
+                "select time_archived is not null from session_v2 where id = ?", (sid,)
+            ).fetchone()
+            flags = ""
+            if row is None:
+                flags = "  [gone from db]"
+            elif row[0]:
+                flags = "  [archived]"
+            print(f"  {t.get('title', '?')}  ({sid}){flags}")
+
+
+def close_tab(session_id):
+    tabs = load_tabs()
+    closed = 0
+    scopes = [("global", tabs.get("global", {}))]
+    scopes += [(cwd, v) for cwd, v in tabs.get("cwd", {}).items()]
+    for name, scope in scopes:
+        before = len(scope.get("tabs", []))
+        scope["tabs"] = [t for t in scope.get("tabs", []) if t["sessionID"] != session_id]
+        removed = before - len(scope["tabs"])
+        if removed:
+            scope.get("unread", {}).pop(session_id, None)
+            closed += removed
+            where = "global" if name == "global" else name
+            print(f"closed {removed} tab(s) for {session_id} in {where}")
+    if not closed:
+        sys.exit(f"no such session in open tabs: {session_id}")
+    tmp = tabs_file + ".tmp"
+    with open(tmp, "w") as f:
+        json.dump(tabs, f)
+    os.replace(tmp, tabs_file)
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    sub = parser.add_subparsers(dest="command")
+    close = sub.add_parser("close", help="remove a session from open tabs")
+    close.add_argument("session_id")
+    args = parser.parse_args()
+    if args.command == "close":
+        close_tab(args.session_id)
+    else:
+        list_tabs()
+
+
+if __name__ == "__main__":
+    main()
