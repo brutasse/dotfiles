@@ -1,3 +1,0 @@
-#! /usr/bin/env bash
-
-(pgrep xchat && xchat -e -c "ALLSERV DISCON") || echo "no xchat"

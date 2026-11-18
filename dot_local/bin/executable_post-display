@@ -1,6 +1,0 @@
-#! /usr/bin/env sh
-pkill trayer
-trayer --edge bottom --align right --transparent true --alpha 255 --widthtype pixel --width 130 &
-cbatticon &
-feh --bg-fill ~/.wallpaper.jpg
-xset b off

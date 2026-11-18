@@ -45,12 +45,10 @@ dot_config/ghb
 dot_config/gtk-2.0
 dot_config/xfce4
 dot_config/yarn
-dot_config/sonata
 dot_config/viewnior
 dot_config/pavucontrol.ini
 dot_config/fontforge/autosave
 dot_config/audacity/pluginregistry.cfg
-dot_config/kupfer/*pickle*
 dot_config/mpd/db
 dot_config/mpd/log
 dot_config/mpd/pid
@@ -75,11 +73,8 @@ dot_config/poolside/skills
 dot_config/hypr/hyprland.conf.bak
 
 # Machine-local
-dot_local/bin/exoctl
-dot_vim/pack/wuelnerdotexe
 dot_vim/.netrwhist
 dot_vim/swap
 
 # Repo-local
 .interceptap
-dot_local/bin/lein

@@ -1,2 +1,0 @@
-#! /usr/bin/env bash
-zenity --question --text "Shutdown?" && sudo shutdown -h 0
