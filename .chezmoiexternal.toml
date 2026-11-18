@@ -1,0 +1,33 @@
+# Vim plugins: checked out by chezmoi as git repos into ~/.vim/pack.
+# Update a plugin: git -C ~/.vim/pack/<owner>/start/<plugin> pull
+# (no refreshPeriod: chezmoi clones once, then leaves the repos to git).
+[".vim/pack/ale/start/ale"]
+    type = "git-repo"
+    url = "https://github.com/dense-analysis/ale.git"
+[".vim/pack/ctrlpvim/start/ctrlp.vim"]
+    type = "git-repo"
+    url = "https://github.com/ctrlpvim/ctrlp.vim.git"
+[".vim/pack/guns/start/vim-sexp"]
+    type = "git-repo"
+    url = "https://github.com/guns/vim-sexp.git"
+[".vim/pack/liquidz/start/vim-iced"]
+    type = "git-repo"
+    url = "https://github.com/liquidz/vim-iced.git"
+[".vim/pack/luochen1990/start/rainbow"]
+    type = "git-repo"
+    url = "https://github.com/luochen1990/rainbow.git"
+[".vim/pack/tpope/start/vim-repeat"]
+    type = "git-repo"
+    url = "https://github.com/tpope/vim-repeat.git"
+[".vim/pack/tpope/start/vim-sexp-mappings-for-regular-people"]
+    type = "git-repo"
+    url = "https://github.com/tpope/vim-sexp-mappings-for-regular-people.git"
+[".vim/pack/tpope/start/vim-speeddating"]
+    type = "git-repo"
+    url = "https://github.com/tpope/vim-speeddating.git"
+[".vim/pack/tpope/start/vim-surround"]
+    type = "git-repo"
+    url = "https://github.com/tpope/vim-surround.git"
+[".vim/pack/vim-scripts/start/paredit.vim"]
+    type = "git-repo"
+    url = "https://github.com/vim-scripts/paredit.vim.git"
